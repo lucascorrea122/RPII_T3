@@ -5,6 +5,8 @@
  */
 package org.unipampa.main;
 
+import org.unipampa.frames.Inicial;
+
 /**
  *
  * @author Lucascorrea
@@ -12,8 +14,8 @@ package org.unipampa.main;
 public class Main {
     
     
-    public static void mains (String[]args){
+    public static void main (String[]args){
     
-    
+        new Inicial().setVisible(true);
     }
 }
