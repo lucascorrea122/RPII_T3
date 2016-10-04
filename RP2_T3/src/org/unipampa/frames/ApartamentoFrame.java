@@ -7,6 +7,7 @@ package org.unipampa.frames;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.unipampa.categorias.Apartamento;
 import org.unipampa.categorias.Imovel;
 import org.unipampa.crud.ListaImoveisCrud;
 
@@ -195,6 +196,11 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextPane1);
 
         jButtonSalvar.setText("Salvar");
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -405,6 +411,17 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         new Inicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        int codigo, numero, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
+        String logradouro, bairro, cidade, descricao, nomeedificio;
+        double areaTotal, valor, valorCondomio;
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     /**
      * @param args the command line arguments
