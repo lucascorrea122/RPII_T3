@@ -48,6 +48,13 @@ public class Terreno extends Imovel{
     public void setDimensaoLado(float dimensaoLado) {
         this.dimensaoLado = dimensaoLado;
     }
+
+    @Override
+    public String toString() {
+        String dados = super.toString();
+        dados+= "Terreno{" + "dimensaoFrente=" + dimensaoFrente + ", dimensaoLado=" + dimensaoLado + '}';
+        return dados;
+    }
     
     
     
