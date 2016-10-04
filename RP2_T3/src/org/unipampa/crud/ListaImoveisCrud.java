@@ -5,66 +5,97 @@
  */
 package org.unipampa.crud;
 
-import java.util.ArrayList;
 import org.unipampa.categorias.Imovel;
 import java.util.List;
 import org.unipampa.categorias.Apartamento;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author Lucascorrea
+ * @author junin
  */
 public class ListaImoveisCrud implements ListaImoveis {
-    
-    private List<Imovel> listaImoveis = new ArrayList();
-    
-    //<editor-fold defaultstate="collapsed" desc="Incluir">
+
+    private ArrayList<Imovel> imoveis = new ArrayList();
+
     @Override
-    public boolean incluir(Imovel imovel) {
-        listaImoveis.add(imovel);
+    public boolean incluir(Imovel im) {
+        this.imoveis.add(im);
         return true;
     }
-//</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Consultar">
+
     @Override
     public Imovel consultar(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Imovel imovei : imoveis) {
+            if (imovei.getCodigo() == codigo) {
+                return imovei;
+            }
+        }
+        return null;
     }
-//</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Editar">
+
     @Override
     public boolean editar(int codigo, Imovel im) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Imovel submissao1 : this.imoveis) {
+            if (submissao1.getCodigo() == codigo) {
+                return true;
+            }
+        }
+        return false;
     }
-//</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Excluir">
-     @Override
+
+    @Override
     public boolean excluir(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Imovel imovei : imoveis) {
+            if (imovei.getCodigo() == codigo) {
+                imoveis.remove(imovei);
+                return true;
+            }
+        }
+        return false;
     }
-//</editor-fold>
-   
-    //<editor-fold defaultstate="collapsed" desc="Ordenar Código, Valor e Area">
+
     @Override
     public List<Imovel> ordenarCodigo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < imoveis.size() - 1; i++) {
+            int aux = i;
+            for (int j = i + 1; j < imoveis.size(); j++) {
+                if (imoveis.get(j).getCodigo() < imoveis.get(aux).getCodigo()) {
+                    aux = j;
+                }
+            }
+
+            Imovel menor = imoveis.get(aux);
+            // imoveis.get(aux) = imoveis.get(i);
+            // imoveis.get(i) = menor;
+        }
+        return imoveis;
+
     }
-    
-     @Override
+
+    @Override
     public List<Imovel> ordenarValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (int i = 0; i < imoveis.size() - 1; i++) {
+            int aux = i;
+            for (int j = i + 1; j < imoveis.size(); j++) {
+                if (imoveis.get(j).getValor() < imoveis.get(aux).getValor()) {
+                    aux = j;
+                }
+            }
+
+            Imovel menor = imoveis.get(aux);
+            //  imoveis.get(aux) = imoveis.get(i);
+            // imoveis.get(i) = menor;
+        }
+        return imoveis;
     }
-    
+
     @Override
     public List<Imovel> ordenarArea() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Pesquisar Valor e Bairro">
+
     @Override
     public List<Imovel> pesquisaValor(double valor) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -72,11 +103,15 @@ public class ListaImoveisCrud implements ListaImoveis {
 
     @Override
     public List<Imovel> pesquisaBairro(String bairro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Imovel> imoveisBairro = new ArrayList();
+        for (Imovel imovei : imoveis) {
+            if (imovei.getBairro().equalsIgnoreCase(bairro)) {
+                imoveisBairro.add(imovei);
+            }
+        }
+        return imoveisBairro;
     }
-//</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Escrever e Ler Arquivo ">
+
     @Override
     public boolean escreverArquivo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -86,7 +121,5 @@ public class ListaImoveisCrud implements ListaImoveis {
     public boolean lerArquivo() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//</editor-fold>
-    
-    
+
 }
