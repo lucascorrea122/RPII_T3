@@ -9,18 +9,19 @@ package org.unipampa.categorias;
  *
  * @author tobia
  */
-public class Enum {
+public enum Tipo {
 
-    public enum Tipo {
-        R("Residencial"), C("Comercial");
-        private String tipo;
+    RESIDENCIAL("Residencial"),
+    COMERCIAL("Comercial");
 
-        Tipo(String tipo) {
-            this.tipo = tipo;
-        }
+    private final String tipo;
 
-        public String getTipo() {
-            return tipo;
-        }
+    Tipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
     }
 }
+

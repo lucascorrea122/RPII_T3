@@ -11,13 +11,13 @@ package org.unipampa.categorias;
  */
 public class Casa extends Imovel {
 
-    private int tipo;
+    private Tipo tipo;
     private double arconst;
     private int nquartos;
     private int ngaragem;
     private int anoc;
 
-    public Casa(int codigo, String logradouro, int numero, String bairro, String cidade, String descricao, double areaTotal, double valor, int tipo, double arconst, int nquartos, int ngaragem, int anoc) {
+    public Casa(int codigo, String logradouro, int numero, String bairro, String cidade, String descricao, double areaTotal, double valor, Tipo tipo, double arconst, int nquartos, int ngaragem, int anoc) {
         super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.tipo = tipo;
         this.arconst = arconst;
@@ -29,14 +29,14 @@ public class Casa extends Imovel {
     /**
      * @return the tipo
      */
-    public int getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(int tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
