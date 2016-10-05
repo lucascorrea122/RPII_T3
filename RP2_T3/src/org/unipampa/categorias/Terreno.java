@@ -11,11 +11,11 @@ package org.unipampa.categorias;
  */
 public class Terreno extends Imovel{
     
-    private float dimensaoFrente;
-    private float dimensaoLado;
+    private double dimensaoFrente;
+    private double dimensaoLado;
 
     public Terreno(int codigo, String logradouro, int numero, String bairro, String cidade,
-          String descricao, double areaTotal, double valor, float dimensaoFrente, float dimensaoLado) {
+          String descricao, double areaTotal, double valor, double dimensaoFrente, double dimensaoLado) {
         super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.dimensaoFrente = dimensaoFrente;
         this.dimensaoLado = dimensaoLado;
@@ -24,7 +24,7 @@ public class Terreno extends Imovel{
     /**
      * @return the dimensaoFrente
      */
-    public float getDimensaoFrente() {
+    public double getDimensaoFrente() {
         return dimensaoFrente;
     }
 
@@ -38,7 +38,7 @@ public class Terreno extends Imovel{
     /**
      * @return the dimensaoLado
      */
-    public float getDimensaoLado() {
+    public double getDimensaoLado() {
         return dimensaoLado;
     }
 
