@@ -74,7 +74,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonApartamentos1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="TERRENO"/>
+        <Property name="text" type="java.lang.String" value="TERRENOS"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonApartamentos1ActionPerformed"/>

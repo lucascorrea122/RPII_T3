@@ -47,7 +47,7 @@ public class Inicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonApartamentos1.setText("TERRENO");
+        jButtonApartamentos1.setText("TERRENOS");
         jButtonApartamentos1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonApartamentos1ActionPerformed(evt);
