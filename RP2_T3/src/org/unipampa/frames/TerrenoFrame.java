@@ -9,10 +9,14 @@ package org.unipampa.frames;
  *
  * @author luh-l
  */
+import java.util.List;
 import org.unipampa.categorias.Imovel;
 import org.unipampa.categorias.Terreno;
+import org.unipampa.crud.ListaImoveisCrud;
 
 public class TerrenoFrame extends javax.swing.JFrame {
+    private List<Imovel> listaTerreno;
+    private ListaImoveisCrud lista = new ListaImoveisCrud();
 
     /**
      * Creates new form TerrenoFrame
@@ -177,7 +181,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
 
         jScrollPane6.setViewportView(descricao);
 
-        jButton1.setText("INCLUIR");
+        jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
