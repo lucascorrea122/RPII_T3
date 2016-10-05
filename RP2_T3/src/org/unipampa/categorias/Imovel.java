@@ -9,7 +9,7 @@ package org.unipampa.categorias;
  *
  * @author Lucascorrea
  */
-public class Imovel {
+public abstract class Imovel {
     
   private int codigo; 
   private String logradouro;
