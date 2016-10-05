@@ -10,6 +10,7 @@ package org.unipampa.frames;
  * @author luh-l
  */
 import java.util.List;
+import javax.swing.JOptionPane;
 import org.unipampa.categorias.Imovel;
 import org.unipampa.categorias.Terreno;
 import org.unipampa.crud.ListaImoveisCrud;
@@ -17,7 +18,16 @@ import org.unipampa.crud.ListaImoveisCrud;
 public class TerrenoFrame extends javax.swing.JFrame {
     private List<Imovel> listaTerreno;
     private ListaImoveisCrud lista = new ListaImoveisCrud();
+     private ListaImoveisCrud crud; 
 
+     
+     public void lista() {
+       
+    }
+     
+     private void excluir(int codigo){
+        crud.excluir(codigo);
+     }
     /**
      * Creates new form TerrenoFrame
      */
@@ -34,15 +44,15 @@ public class TerrenoFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        Menu = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         jTextPane11 = new javax.swing.JTextPane();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Listar = new javax.swing.JButton();
+        Incluir = new javax.swing.JButton();
+        Excluir = new javax.swing.JButton();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTextPane12 = new javax.swing.JTextPane();
         jPanel2 = new javax.swing.JPanel();
@@ -64,7 +74,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
         bairro = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
         descricao = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
+        Salvar = new javax.swing.JButton();
         areaTotal = new javax.swing.JFormattedTextField();
         numero = new javax.swing.JFormattedTextField();
         codigo = new javax.swing.JFormattedTextField();
@@ -72,7 +82,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
         dimensaoFrente = new javax.swing.JFormattedTextField();
         dimensaoLado = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton5 = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,14 +94,29 @@ public class TerrenoFrame extends javax.swing.JFrame {
 
         jScrollPane11.setViewportView(jTextPane11);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton2.setText("Listar");
+        Listar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Listar.setText("Listar");
+        Listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton3.setText("Incluir");
+        Incluir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Incluir.setText("Incluir");
+        Incluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IncluirActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jButton4.setText("Excluir");
+        Excluir.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Excluir.setText("Excluir");
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
 
         jScrollPane12.setViewportView(jTextPane12);
 
@@ -111,12 +136,12 @@ public class TerrenoFrame extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Excluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
                         .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
@@ -130,18 +155,18 @@ public class TerrenoFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel12)
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(Incluir)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(Excluir))
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Menu", jPanel1);
+        Menu.addTab("Menu", jPanel1);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Código:");
@@ -181,10 +206,10 @@ public class TerrenoFrame extends javax.swing.JFrame {
 
         jScrollPane6.setViewportView(descricao);
 
-        jButton1.setText("Salvar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Salvar.setText("Salvar");
+        Salvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                SalvarActionPerformed(evt);
             }
         });
 
@@ -224,7 +249,12 @@ public class TerrenoFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        jButton5.setText("Cancelar");
+        Cancelar.setText("Cancelar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -283,7 +313,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
                             .addComponent(jLabel9)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(Cancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -295,7 +325,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
                                 .addGap(8, 26, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39))))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -345,28 +375,28 @@ public class TerrenoFrame extends javax.swing.JFrame {
                     .addComponent(dimensaoLado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Incluir", jPanel2);
+        Menu.addTab("Incluir", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Menu, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Menu, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         int codigo;
         String logradouro;
         int numero;
@@ -391,7 +421,45 @@ public class TerrenoFrame extends javax.swing.JFrame {
         
         Imovel terreno = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, 
                 areaTotal, valor, dimensaoFrente, dimensaoLado);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        crud.incluir(terreno);
+        
+            this.codigo.setText("");
+            this.logradouro.setText("");
+            this.numero.setText("");
+            this.bairro.setText("");
+            this.cidade.setText("");
+            this.descricao.setText("");
+            this.areaTotal.setText("");
+            this.valor.setText("");
+            this.dimensaoFrente.setText("");
+            this.dimensaoLado.setText("");
+      
+            JOptionPane.showMessageDialog(null, "Salvo Com Sucesso!");
+
+            Menu.setSelectedIndex(0);
+    }//GEN-LAST:event_SalvarActionPerformed
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        Menu.setSelectedIndex(0);
+        Menu.setEnabledAt(0, true);
+        Menu.setEnabledAt(1, true);
+    }//GEN-LAST:event_CancelarActionPerformed
+
+    private void IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirActionPerformed
+        Menu.setSelectedIndex(1);
+        Menu.setEnabledAt(1, true);
+        Menu.setEnabledAt(0, false);
+    }//GEN-LAST:event_IncluirActionPerformed
+
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
+       
+    }//GEN-LAST:event_ExcluirActionPerformed
+
+    private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
+        listaTerreno = crud.ordenarCodigo();
+        lista();
+    }//GEN-LAST:event_ListarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,6 +497,12 @@ public class TerrenoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Excluir;
+    private javax.swing.JButton Incluir;
+    private javax.swing.JButton Listar;
+    private javax.swing.JTabbedPane Menu;
+    private javax.swing.JButton Salvar;
     private javax.swing.JFormattedTextField areaTotal;
     private javax.swing.JTextPane bairro;
     private javax.swing.JTextPane cidade;
@@ -436,11 +510,6 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private javax.swing.JTextPane descricao;
     private javax.swing.JFormattedTextField dimensaoFrente;
     private javax.swing.JFormattedTextField dimensaoLado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -462,7 +531,6 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextPane jTextPane11;
     private javax.swing.JTextPane jTextPane12;
     private javax.swing.JTextPane logradouro;
