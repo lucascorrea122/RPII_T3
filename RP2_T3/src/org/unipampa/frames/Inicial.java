@@ -88,6 +88,7 @@ public class Inicial extends javax.swing.JFrame {
     private void jButtonApartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApartamentosActionPerformed
         // TODO add your handling code here:
         new ApartamentoFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonApartamentosActionPerformed
 
     private void jButtonApartamentos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApartamentos1ActionPerformed
