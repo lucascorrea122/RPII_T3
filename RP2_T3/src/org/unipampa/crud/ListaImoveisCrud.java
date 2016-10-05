@@ -122,4 +122,8 @@ public class ListaImoveisCrud implements ListaImoveis {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public List<Imovel> getLista(){
+        return this.imoveis;
+    
+    }
 }

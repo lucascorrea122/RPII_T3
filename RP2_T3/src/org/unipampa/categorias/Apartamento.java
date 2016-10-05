@@ -34,7 +34,7 @@ public class Apartamento extends Imovel {
     
     }
 //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="Gets/Sets/ToString">
     /**
      * @return the nroQuartos
