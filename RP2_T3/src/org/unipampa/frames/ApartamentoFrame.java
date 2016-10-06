@@ -133,7 +133,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -144,7 +144,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jTextFieldBuscarCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jButtonListar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -309,7 +309,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(jNroVagas)))
                                 .addGap(10, 10, 10)
-                                .addComponent(jAndar, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                .addComponent(jAndar, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                                 .addGap(98, 98, 98))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -377,11 +377,11 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addComponent(jNroQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jNroVagas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSalvar)
-                    .addComponent(jButtonCancelar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCancelar)
+                    .addComponent(jButtonSalvar))
+                .addGap(27, 27, 27))
         );
 
         jTabbedPane1.addTab("Incluir", jPanel2);
@@ -394,7 +394,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, Short.MAX_VALUE)
         );
 
         pack();
@@ -424,12 +424,12 @@ public class ApartamentoFrame extends javax.swing.JFrame {
    
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        int codigo, numero, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
+        int numero, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
         String logradouro, bairro, cidade, descricao, nomeEdificio;
         double areaTotal, valor, valorCondomio;
         
         //<editor-fold defaultstate="collapsed" desc="Campos Setados">
-        codigo = Integer.parseInt(jCodigo.getText());
+        //codigo = Integer.parseInt(jCodigo.getText());
         numero = Integer.parseInt(jNro.getText());
         nroQuartos = Integer.parseInt(jNroQuartos.getText());
         nroVagasGaragem = Integer.parseInt(jNroVagas.getText());
@@ -446,7 +446,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         valorCondomio = Double.parseDouble(jValorCondominio.getText());
 //</editor-fold>
 
-    Apartamento apartamento = new Apartamento(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, 
+    Apartamento apartamento = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal, 
                 valor, nroQuartos, nroVagasGaragem, anoConstrucao, nomeEdificio, andar, nroApt, valorCondomio);
     
     lista.incluir(apartamento);

@@ -33,7 +33,8 @@ public class Inicial extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jButtonApartamentos = new javax.swing.JButton();
-        jButtonApartamentos1 = new javax.swing.JButton();
+        jButtonTerreno = new javax.swing.JButton();
+        jButtonChacara = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,10 +48,17 @@ public class Inicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonApartamentos1.setText("TERRENOS");
-        jButtonApartamentos1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonTerreno.setText("TERRENOS");
+        jButtonTerreno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonApartamentos1ActionPerformed(evt);
+                jButtonTerrenoActionPerformed(evt);
+            }
+        });
+
+        jButtonChacara.setText("CHÁCARA");
+        jButtonChacara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChacaraActionPerformed(evt);
             }
         });
 
@@ -60,14 +68,16 @@ public class Inicial extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonApartamentos1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(154, 154, 154)
                             .addComponent(jLabel1))
-                        .addGroup(layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(95, 95, 95)
-                            .addComponent(jButtonApartamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jButtonApartamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonChacara, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -78,8 +88,10 @@ public class Inicial extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonApartamentos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonApartamentos1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addComponent(jButtonTerreno, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonChacara)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         pack();
@@ -91,9 +103,16 @@ public class Inicial extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonApartamentosActionPerformed
 
-    private void jButtonApartamentos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApartamentos1ActionPerformed
+    private void jButtonTerrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerrenoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonApartamentos1ActionPerformed
+        new TerrenoFrame().setVisible(true);
+    }//GEN-LAST:event_jButtonTerrenoActionPerformed
+
+    private void jButtonChacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChacaraActionPerformed
+        // TODO add your handling code here:
+        new ChacaraFrame().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButtonChacaraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,7 +151,8 @@ public class Inicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonApartamentos;
-    private javax.swing.JButton jButtonApartamentos1;
+    private javax.swing.JButton jButtonChacara;
+    private javax.swing.JButton jButtonTerreno;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

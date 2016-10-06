@@ -20,10 +20,10 @@ public class Apartamento extends Imovel {
     private double valorCondominio;
     
     //<editor-fold defaultstate="collapsed" desc="Construtor">
-    public Apartamento(int codigo, String logradouro, int numero, String bairro, String cidade,
+    public Apartamento(String logradouro, int numero, String bairro, String cidade,
           String descricao, double areaTotal, double valor, int nroQuartos, int nroVagasGaragem,
           int anoConstrucao, String nomeEdificio, int andar, int nroApt, double valorCondominio){
-        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
+        super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.nroQuartos = nroQuartos;
         this.nroVagasGaragem = nroVagasGaragem;
         this.anoConstrucao = anoConstrucao;
@@ -129,7 +129,7 @@ public class Apartamento extends Imovel {
     
     @Override
     public String toString(){
-        String dados = super.getCodigo()+"Apartamento";
+        String dados = super.getCodig()+" - Apartamento";
         return dados;
     }
 //</editor-fold>

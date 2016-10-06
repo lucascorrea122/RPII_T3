@@ -11,7 +11,8 @@ package org.unipampa.categorias;
  */
 public abstract class Imovel {
     
-  private int codigo; 
+  private static int codigo = 1;
+  private int codig;
   private String logradouro;
   private int numero;
   private String bairro;
@@ -21,9 +22,9 @@ public abstract class Imovel {
   private double valor;
   
   
-  public Imovel(int codigo, String logradouro, int numero, String bairro, String cidade,
+  public Imovel(String logradouro, int numero, String bairro, String cidade,
           String descricao, double areaTotal, double valor){
-      this.codigo = codigo;
+      this.codig = codigo++;
       this.logradouro = logradouro;
       this.numero = numero;
       this.bairro = bairro;
@@ -37,15 +38,8 @@ public abstract class Imovel {
     /**
      * @return the codigo
      */
-    public int getCodigo() {
-        return codigo;
-    }
-
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public int getCodig() {
+        return codig;
     }
 
     /**
