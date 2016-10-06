@@ -58,9 +58,9 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jButton2" max="32767" attributes="0"/>
+                                  <Component id="JButtonVoltarMenuPrincipal" max="32767" attributes="0"/>
                                   <Component id="jButtonExcluir" pref="108" max="32767" attributes="0"/>
-                                  <Component id="jButtonIncluir" max="32767" attributes="0"/>
+                                  <Component id="jButtonIncluirApartamento" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -69,7 +69,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jTextFieldBuscarCodigo" min="-2" pref="360" max="-2" attributes="0"/>
                               <EmptySpace pref="12" max="32767" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="jButtonListar" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="478" max="-2" attributes="0"/>
                       </Group>
@@ -91,19 +91,19 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="jTextFieldBuscarCodigo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jButtonListar" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButtonIncluir" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButtonIncluirApartamento" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButtonExcluir" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <Component id="JButtonVoltarMenuPrincipal" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -139,12 +139,12 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButtonIncluir">
+            <Component class="javax.swing.JButton" name="jButtonIncluirApartamento">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Incluir"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIncluirApartamentoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonExcluir">
@@ -163,17 +163,20 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldBuscarCodigo">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jButtonListar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonListarActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="JButtonVoltarMenuPrincipal">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Voltar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonVoltarMenuPrincipalActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

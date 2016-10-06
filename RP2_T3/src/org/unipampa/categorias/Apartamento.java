@@ -129,8 +129,8 @@ public class Apartamento extends Imovel {
     
     @Override
     public String toString(){
-        String dados = super.toString();
-        return null;
+        String dados = super.getCodigo()+"Apartamento";
+        return dados;
     }
 //</editor-fold>
     
