@@ -21,7 +21,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
 
     private List<Imovel> listaApartamento;
     private ListaImoveisCrud lista = new ListaImoveisCrud();
-    private DefaultListModel modelList = new DefaultListModel();
 
     /**
      * Creates new form ApartamentoFrame
@@ -33,16 +32,28 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(1, false);
 
     }
+
     //<editor-fold defaultstate="collapsed" desc="Método Listar">
-    public void listar(){
-        modelList.clear();
-        for (Imovel apartamento : listaApartamento) {
-            modelList.addElement(apartamento.toString());
+    public void listar(int cod, boolean isPesquisa) {
+        DefaultListModel modelList = new DefaultListModel();
+        
+        if(isPesquisa){
+            Imovel apartamento = lista.consultar(cod);
+            if(apartamento == null){
+                JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
+            }else {
+                modelList.addElement(apartamento.toString());
+            }
+        } else {
+            listaApartamento = lista.getLista();
+            for (Imovel apartamento : listaApartamento) {
+                modelList.addElement(apartamento.toString());
+            }
         }
-        jList.setModel(modelList);
+        
+        jList.setModel(modelList); 
     }
     //</editor-fold>
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,7 +75,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         jTextCodigo = new javax.swing.JTextField();
         jButtonListar = new javax.swing.JButton();
         JButtonVoltarMenuPrincipal = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -145,8 +155,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
             }
         });
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -171,10 +179,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(244, 244, 244))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +199,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addComponent(JButtonVoltarMenuPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107))
+                .addGap(133, 133, 133))
         );
 
         jTabbedPane1.addTab("Menu", jPanel1);
@@ -438,13 +440,14 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                     .addComponent(jLabel17)
                     .addComponent(jValorCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(jAnoContrucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
-                    .addComponent(jNroApt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(jAnoContrucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jNroApt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15)
+                        .addComponent(jAndar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -498,13 +501,15 @@ public class ApartamentoFrame extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        int numero, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
+        int numero=0, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
         String logradouro, bairro, cidade, descricao, nomeEdificio;
         double areaTotal, valor, valorCondomio;
 
         //<editor-fold defaultstate="collapsed" desc="Campos Setados">
         //codigo = Integer.parseInt(jCodigo.getText());
-        numero = Integer.parseInt(jNro.getText());
+        if(!jNro.getText().trim().equals("")){
+            numero = Integer.parseInt(jNro.getText());
+        }
         nroQuartos = Integer.parseInt(jNroQuartos.getText());
         nroVagasGaragem = Integer.parseInt(jNroVagas.getText());
         anoConstrucao = Integer.parseInt(jAnoContrucao.getText());
@@ -522,10 +527,14 @@ public class ApartamentoFrame extends javax.swing.JFrame {
 
         Apartamento apartamento = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal,
                 valor, nroQuartos, nroVagasGaragem, anoConstrucao, nomeEdificio, andar, nroApt, valorCondomio);
+
+        if(jNro.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null, "Deve preencher todos os campos ou inserir uma duração válida.");
+        }
         
-        
+        else{
         lista.incluir(apartamento);
-        
+
         //<editor-fold defaultstate="collapsed" desc="Limpar Campos">
         jCidade.setText("");
         jLogradouro.setText("");
@@ -548,28 +557,43 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         jTabbedPane1.setEnabledAt(0, true);
         jTabbedPane1.setEnabledAt(1, false);
 
-
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    public boolean verificaMaiorZero(String z) {
+        if (Integer.parseInt(z) == 0) {
+            return true;
+        }else if(Integer.parseInt(z) > 0) {
+            return true;
+                    } else{  
+        }
+        return false;
+
+    }
 
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
-        listaApartamento = lista.getLista();
-        //listaApartamento = lista.consultar(duracao);
-        listar();
-    }//GEN-LAST:event_jButtonListarActionPerformed
-   
-    
-    //<editor-fold defaultstate="collapsed" desc="Método Para Apenas Números">
-    private void apenasNumero(java.awt.event.KeyEvent evt){
-        char caracter = evt.getKeyChar();
-        if(Character.isDigit(caracter)){
+        //listaApartamento = lista.getLista();
+        if(!(jTextCodigo.getText().trim().equals(""))){
+            listar(Integer.parseInt(jTextCodigo.getText().trim()), true);
+        } else {
+            listar(0, false);
+        }
         
-        }else{
+            
+    }//GEN-LAST:event_jButtonListarActionPerformed
+
+    //<editor-fold defaultstate="collapsed" desc="Método Para Apenas Números">
+    private void apenasNumero(java.awt.event.KeyEvent evt) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
+
+        } else {
             evt.consume();
         }
     }
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="collapsed" desc="Eventos - Campos Aceitando Apenas Números">
     private void jNroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jNroKeyTyped
         // TODO add your handling code here:
@@ -621,7 +645,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         apenasNumero(evt);
     }//GEN-LAST:event_jTextCodigoKeyTyped
     //</editor-fold>
-    
+
     /**
      * @param args the command line arguments
      */
@@ -670,7 +694,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JTextField jCidade;
     private javax.swing.JTextPane jDescricao;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
