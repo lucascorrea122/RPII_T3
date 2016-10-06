@@ -64,13 +64,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButtonIncluirApartamento" alignment="0" pref="108" max="32767" attributes="0"/>
-                              <Component id="jButtonExcluir" alignment="0" pref="108" max="32767" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="JButtonVoltarMenuPrincipal" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jButtonIncluirApartamento" alignment="0" pref="108" max="32767" attributes="0"/>
+                          <Component id="jButtonExcluir" alignment="0" pref="108" max="32767" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JButtonVoltarMenuPrincipal" alignment="0" pref="108" max="32767" attributes="0"/>
+                          <Component id="jDetalhes" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -105,7 +104,9 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jButtonIncluirApartamento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jDetalhes" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButtonExcluir" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
@@ -190,6 +191,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButtonVoltarMenuPrincipalActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="jDetalhes">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Detalhes"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jDetalhesActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel2">
@@ -200,8 +209,8 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Incluir">
-                <Property name="tabTitle" type="java.lang.String" value="Incluir"/>
+              <JTabbedPaneConstraints tabName="Dados">
+                <Property name="tabTitle" type="java.lang.String" value="Dados"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>

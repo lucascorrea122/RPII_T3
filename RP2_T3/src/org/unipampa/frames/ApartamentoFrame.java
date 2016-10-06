@@ -75,6 +75,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         jTextCodigo = new javax.swing.JTextField();
         jButtonListar = new javax.swing.JButton();
         JButtonVoltarMenuPrincipal = new javax.swing.JButton();
+        jDetalhes = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -155,18 +156,25 @@ public class ApartamentoFrame extends javax.swing.JFrame {
             }
         });
 
+        jDetalhes.setText("Detalhes");
+        jDetalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDetalhesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButtonIncluirApartamento, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                        .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(JButtonVoltarMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonIncluirApartamento, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JButtonVoltarMenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jDetalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -194,7 +202,9 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonIncluirApartamento)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDetalhes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonExcluir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
@@ -461,7 +471,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        jTabbedPane1.addTab("Incluir", jPanel2);
+        jTabbedPane1.addTab("Dados", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -560,17 +570,6 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
-    public boolean verificaMaiorZero(String z) {
-        if (Integer.parseInt(z) == 0) {
-            return true;
-        }else if(Integer.parseInt(z) > 0) {
-            return true;
-                    } else{  
-        }
-        return false;
-
-    }
-
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         //listaApartamento = lista.getLista();
@@ -645,7 +644,34 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         apenasNumero(evt);
     }//GEN-LAST:event_jTextCodigoKeyTyped
     //</editor-fold>
-
+    
+    private void jDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDetalhesActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(1);
+        
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, false);
+        
+        String codig = jList.getSelectedValue();
+        
+       Imovel a = lista.consultar(pegaCodigo(codig));
+        Apartamento b = (Apartamento)a;
+       jNroQuartos.setText(String.valueOf(b.getNroQuartos()));
+        
+    }//GEN-LAST:event_jDetalhesActionPerformed
+    
+    public int pegaCodigo(String codig){
+         int end = 0;
+         for (int i = 0; i < codig.length(); i++) {
+            if(codig.charAt(i) == '-'){
+                end = i - 1;
+                break;
+            }
+         }
+         codig = codig.substring(0, end);
+         return Integer.parseInt(codig);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -694,6 +720,7 @@ public class ApartamentoFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JTextField jCidade;
     private javax.swing.JTextPane jDescricao;
+    private javax.swing.JButton jDetalhes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
