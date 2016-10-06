@@ -18,7 +18,7 @@ import org.unipampa.crud.ListaImoveisCrud;
 public class TerrenoFrame extends javax.swing.JFrame {
     private List<Imovel> listaTerreno;
     private ListaImoveisCrud lista = new ListaImoveisCrud();
-     private ListaImoveisCrud crud; 
+   
 
      
      public void lista() {
@@ -26,7 +26,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
     }
      
      private void excluir(int codigo){
-        crud.excluir(codigo);
+        lista.excluir(codigo);
      }
     /**
      * Creates new form TerrenoFrame
@@ -422,7 +422,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
         Imovel terreno = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, 
                 areaTotal, valor, dimensaoFrente, dimensaoLado);
         
-        crud.incluir(terreno);
+        lista.incluir(terreno);
         
             this.codigo.setText("");
             this.logradouro.setText("");
@@ -457,7 +457,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
-        listaTerreno = crud.ordenarCodigo();
+        listaTerreno = lista.ordenarCodigo();
         lista();
     }//GEN-LAST:event_ListarActionPerformed
 
