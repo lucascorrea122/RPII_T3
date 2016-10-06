@@ -31,6 +31,16 @@ public class ChacaraFrame extends javax.swing.JFrame {
         
         jIncluir.setEnabledAt(1, false);
     }
+    
+     //<editor-fold defaultstate="collapsed" desc="Método Listar">
+    public void listar(){
+        modelList.clear();
+        for (Imovel chacara : listaChacara) {
+            modelList.addElement(chacara.toString());
+        }
+        jList.setModel(modelList);
+    }
+    //</editor-fold>
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -398,11 +408,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
         // TODO add your handling code here:
-        listaChacara =listaC.getLista();
-        for(Imovel chacara : listaChacara){
-            modelList.addElement(chacara.toString());
-        }
-        jList.setModel(modelList);
+        listaChacara = listaC.getLista();
+        listar();
     }//GEN-LAST:event_ListarActionPerformed
 
     private void IncluirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirMenuActionPerformed
