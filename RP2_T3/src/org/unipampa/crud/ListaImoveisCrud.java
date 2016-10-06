@@ -28,7 +28,7 @@ public class ListaImoveisCrud implements ListaImoveis {
     @Override
     public Imovel consultar(int codigo) {
         for (Imovel imovei : imoveis) {
-            if (imovei.getCodigo() == codigo) {
+            if (imovei.getCodig() == codigo) {
                 return imovei;
             }
         }
@@ -38,7 +38,7 @@ public class ListaImoveisCrud implements ListaImoveis {
     @Override
     public boolean editar(int codigo, Imovel im) {
         for (Imovel submissao1 : this.imoveis) {
-            if (submissao1.getCodigo() == codigo) {
+            if (submissao1.getCodig() == codigo) {
                 return true;
             }
         }
@@ -48,7 +48,7 @@ public class ListaImoveisCrud implements ListaImoveis {
     @Override
     public boolean excluir(int codigo) {
         for (Imovel imovei : imoveis) {
-            if (imovei.getCodigo() == codigo) {
+            if (imovei.getCodig() == codigo) {
                 imoveis.remove(imovei);
                 return true;
             }
@@ -61,7 +61,7 @@ public class ListaImoveisCrud implements ListaImoveis {
         for (int i = 0; i < imoveis.size() - 1; i++) {
             int aux = i;
             for (int j = i + 1; j < imoveis.size(); j++) {
-                if (imoveis.get(j).getCodigo() < imoveis.get(aux).getCodigo()) {
+                if (imoveis.get(j).getCodig() < imoveis.get(aux).getCodig()) {
                     aux = j;
                 }
             }
