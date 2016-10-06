@@ -106,6 +106,7 @@ public class Inicial extends javax.swing.JFrame {
     private void jButtonTerrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerrenoActionPerformed
         // TODO add your handling code here:
         new TerrenoFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButtonTerrenoActionPerformed
 
     private void jButtonChacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChacaraActionPerformed

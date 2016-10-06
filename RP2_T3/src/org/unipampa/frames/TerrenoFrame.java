@@ -10,6 +10,7 @@ package org.unipampa.frames;
  * @author luh-l
  */
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import org.unipampa.categorias.Imovel;
 import org.unipampa.categorias.Terreno;
@@ -18,21 +19,27 @@ import org.unipampa.crud.ListaImoveisCrud;
 public class TerrenoFrame extends javax.swing.JFrame {
     private List<Imovel> listaTerreno;
     private ListaImoveisCrud lista = new ListaImoveisCrud();
+    private DefaultListModel modelList = new DefaultListModel();
    
 
      
-     public void lista() {
-       
+     public void listar(){
+        modelList.clear();
+        for (Imovel terreno : listaTerreno) {
+            modelList.addElement(terreno.toString());
+        }
+        
+           jList1.setModel(modelList);
     }
      
-     private void excluir(int codigo){
-        lista.excluir(codigo);
-     }
     /**
      * Creates new form TerrenoFrame
      */
     public TerrenoFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
+
+        Menu.setEnabledAt(1, false);
     }
 
     /**
@@ -53,8 +60,9 @@ public class TerrenoFrame extends javax.swing.JFrame {
         Listar = new javax.swing.JButton();
         Incluir = new javax.swing.JButton();
         Excluir = new javax.swing.JButton();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        jTextPane12 = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        Voltar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -118,7 +126,15 @@ public class TerrenoFrame extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane12.setViewportView(jTextPane12);
+        jScrollPane1.setViewportView(jList1);
+
+        Voltar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Voltar.setText("Voltar");
+        Voltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VoltarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,21 +145,21 @@ public class TerrenoFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(290, 290, 290))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(jLabel12)
                         .addGap(43, 43, 43)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Excluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                            .addComponent(Incluir, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                            .addComponent(Voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(45, 45, 45)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,11 +175,15 @@ public class TerrenoFrame extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(60, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Incluir)
                         .addGap(18, 18, 18)
-                        .addComponent(Excluir))
-                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Voltar)
+                        .addGap(45, 45, 45))))
         );
 
         Menu.addTab("Menu", jPanel1);
@@ -424,6 +444,8 @@ public class TerrenoFrame extends javax.swing.JFrame {
         
         lista.incluir(terreno);
         
+        
+        
             this.codigo.setText("");
             this.logradouro.setText("");
             this.numero.setText("");
@@ -436,8 +458,11 @@ public class TerrenoFrame extends javax.swing.JFrame {
             this.dimensaoLado.setText("");
       
             JOptionPane.showMessageDialog(null, "Salvo Com Sucesso!");
+            
+           Menu.setSelectedIndex(0);
 
-            Menu.setSelectedIndex(0);
+           Menu.setEnabledAt(0, true);
+           Menu.setEnabledAt(1, false);
     }//GEN-LAST:event_SalvarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
@@ -457,9 +482,16 @@ public class TerrenoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
-        listaTerreno = lista.ordenarCodigo();
-        lista();
+        listaTerreno = lista.getLista();
+       
+        listar();
+        
     }//GEN-LAST:event_ListarActionPerformed
+
+    private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
+        new Inicial().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_VoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -503,6 +535,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private javax.swing.JButton Listar;
     private javax.swing.JTabbedPane Menu;
     private javax.swing.JButton Salvar;
+    private javax.swing.JButton Voltar;
     private javax.swing.JFormattedTextField areaTotal;
     private javax.swing.JTextPane bairro;
     private javax.swing.JTextPane cidade;
@@ -522,17 +555,17 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextPane jTextPane11;
-    private javax.swing.JTextPane jTextPane12;
     private javax.swing.JTextPane logradouro;
     private javax.swing.JFormattedTextField numero;
     private javax.swing.JFormattedTextField valor;
