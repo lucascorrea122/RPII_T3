@@ -18,11 +18,11 @@ public class Chacara extends Imovel{
     private int anoConstrucao;
     private double distanciaCidade;
     
-    public Chacara(int codigo, String logradouro, int numero, String bairro,
+    public Chacara(String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor,
             double areaConstruida, int nroQuartos, int anoConstrucao, double distanciaCidade) {
         
-        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
+        super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.areaConstruida = areaConstruida;
         this.nroQuartos = nroQuartos;
         this.anoConstrucao = anoConstrucao;
@@ -87,9 +87,8 @@ public class Chacara extends Imovel{
     }
     
     public String toString(){
-    return (super.toString() + "\nÁrea Construída: " + getAreaConstruida() +
-            "\nNúmero de Quartos: " + getNroQuartos() + "\nAno de Construção: " 
-            + getAnoConstrucao() + "\nDistância da Cidade: " + getDistanciaCidade());
+    String dados = super.getCodig()+" - Apartamento";
+        return dados;
     }
     
 }
