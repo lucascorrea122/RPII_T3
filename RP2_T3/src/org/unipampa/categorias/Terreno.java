@@ -14,7 +14,7 @@ public class Terreno extends Imovel{
     private double dimensaoFrente;
     private double dimensaoLado;
 
-    public Terreno(int codigo, String logradouro, int numero, String bairro, String cidade,
+    public Terreno(String logradouro, int numero, String bairro, String cidade,
           String descricao, double areaTotal, double valor, double dimensaoFrente, double dimensaoLado) {
         super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.dimensaoFrente = dimensaoFrente;
@@ -51,8 +51,7 @@ public class Terreno extends Imovel{
 
     @Override
     public String toString() {
-        String dados = super.toString();
-        dados+= "Terreno{" + "dimensaoFrente=" + dimensaoFrente + ", dimensaoLado=" + dimensaoLado + '}';
+        String dados = super.getCodig()+" - Terreno";
         return dados;
     }
     
