@@ -36,12 +36,12 @@ public class ApartamentoFrame extends javax.swing.JFrame {
     //<editor-fold defaultstate="collapsed" desc="Método Listar">
     public void listar(int cod, boolean isPesquisa) {
         DefaultListModel modelList = new DefaultListModel();
-        
-        if(isPesquisa){
+
+        if (isPesquisa) {
             Imovel apartamento = lista.consultar(cod);
-            if(apartamento == null){
+            if (apartamento == null) {
                 JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
-            }else {
+            } else {
                 modelList.addElement(apartamento.toString());
             }
         } else {
@@ -50,8 +50,8 @@ public class ApartamentoFrame extends javax.swing.JFrame {
                 modelList.addElement(apartamento.toString());
             }
         }
-        
-        jList.setModel(modelList); 
+
+        jList.setModel(modelList);
     }
     //</editor-fold>
 
@@ -511,61 +511,70 @@ public class ApartamentoFrame extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         // TODO add your handling code here:
-        int numero=0, nroQuartos, nroVagasGaragem, anoConstrucao, andar, nroApt;
-        String logradouro, bairro, cidade, descricao, nomeEdificio;
-        double areaTotal, valor, valorCondomio;
+        int numero = 0, nroQuartos=0, nroVagasGaragem=0, anoConstrucao=0, andar=0, nroApt=0;
+        String logradouro= null, bairro=null, cidade=null, descricao=null, nomeEdificio=null;
+        double areaTotal=0, valor=0, valorCondomio=0;
 
         //<editor-fold defaultstate="collapsed" desc="Campos Setados">
         //codigo = Integer.parseInt(jCodigo.getText());
-        if(!jNro.getText().trim().equals("")){
+        if (!jNro.getText().trim().equals("") || !jNroQuartos.getText().trim().equals("")
+                || !jNroVagas.getText().trim().equals("") || !jAnoContrucao.getText().trim().equals("")
+                || !jAndar.getText().trim().equals("") || !jNroApt.getText().trim().equals("")
+                || !jAreaTotal.getText().trim().equals("") || !jValor.getText().trim().equals("")
+                || !jValorCondominio.getText().trim().equals("")) {
+            
             numero = Integer.parseInt(jNro.getText());
+            nroQuartos = Integer.parseInt(jNroQuartos.getText());
+            nroVagasGaragem = Integer.parseInt(jNroVagas.getText());
+            anoConstrucao = Integer.parseInt(jAnoContrucao.getText());
+            andar = Integer.parseInt(jAndar.getText());
+            nroApt = Integer.parseInt(jNroApt.getText());
+            logradouro = jLogradouro.getText();
+            bairro = jBairro.getText();
+            cidade = jCidade.getText();
+            descricao = jDescricao.getText();
+            nomeEdificio = jNomeEdificio.getText();
+            areaTotal = Double.parseDouble(jAreaTotal.getText());
+            valor = Double.parseDouble(jValor.getText());
+            valorCondomio = Double.parseDouble(jValorCondominio.getText());
+            
+            
+            
         }
-        nroQuartos = Integer.parseInt(jNroQuartos.getText());
-        nroVagasGaragem = Integer.parseInt(jNroVagas.getText());
-        anoConstrucao = Integer.parseInt(jAnoContrucao.getText());
-        andar = Integer.parseInt(jAndar.getText());
-        nroApt = Integer.parseInt(jNroApt.getText());
-        logradouro = jLogradouro.getText();
-        bairro = jBairro.getText();
-        cidade = jCidade.getText();
-        descricao = jDescricao.getText();
-        nomeEdificio = jNomeEdificio.getText();
-        areaTotal = Double.parseDouble(jAreaTotal.getText());
-        valor = Double.parseDouble(jValor.getText());
-        valorCondomio = Double.parseDouble(jValorCondominio.getText());
-        //</editor-fold>
+       
 
-        Apartamento apartamento = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal,
+        //</editor-fold>
+        
+        
+        if (jNro.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Deve preencher todos os campos ou inserir uma duração válida.");
+        } else {
+            Apartamento apartamento = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal,
                 valor, nroQuartos, nroVagasGaragem, anoConstrucao, nomeEdificio, andar, nroApt, valorCondomio);
 
-        if(jNro.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(null, "Deve preencher todos os campos ou inserir uma duração válida.");
-        }
-        
-        else{
-        lista.incluir(apartamento);
+            lista.incluir(apartamento);
 
-        //<editor-fold defaultstate="collapsed" desc="Limpar Campos">
-        jCidade.setText("");
-        jLogradouro.setText("");
-        jNro.setText("");
-        jBairro.setText("");
-        jDescricao.setText("");
-        jAreaTotal.setText("");
-        jValor.setText("");
-        jNroQuartos.setText("");
-        jNroVagas.setText("");
-        jAnoContrucao.setText("");
-        jNomeEdificio.setText("");
-        jAndar.setText("");
-        jNroApt.setText("");
-        jValorCondominio.setText("");
-        //</editor-fold>
+            //<editor-fold defaultstate="collapsed" desc="Limpar Campos">
+            jCidade.setText("");
+            jLogradouro.setText("");
+            jNro.setText("");
+            jBairro.setText("");
+            jDescricao.setText("");
+            jAreaTotal.setText("");
+            jValor.setText("");
+            jNroQuartos.setText("");
+            jNroVagas.setText("");
+            jAnoContrucao.setText("");
+            jNomeEdificio.setText("");
+            jAndar.setText("");
+            jNroApt.setText("");
+            jValorCondominio.setText("");
+            //</editor-fold>
 
-        jTabbedPane1.setSelectedIndex(0);
+            jTabbedPane1.setSelectedIndex(0);
 
-        jTabbedPane1.setEnabledAt(0, true);
-        jTabbedPane1.setEnabledAt(1, false);
+            jTabbedPane1.setEnabledAt(0, true);
+            jTabbedPane1.setEnabledAt(1, false);
 
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
@@ -573,13 +582,13 @@ public class ApartamentoFrame extends javax.swing.JFrame {
     private void jButtonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarActionPerformed
         // TODO add your handling code here:
         //listaApartamento = lista.getLista();
-        if(!(jTextCodigo.getText().trim().equals(""))){
+        if (!(jTextCodigo.getText().trim().equals(""))) {
             listar(Integer.parseInt(jTextCodigo.getText().trim()), true);
         } else {
             listar(0, false);
         }
-        
-            
+
+
     }//GEN-LAST:event_jButtonListarActionPerformed
 
     //<editor-fold defaultstate="collapsed" desc="Método Para Apenas Números">
@@ -644,34 +653,34 @@ public class ApartamentoFrame extends javax.swing.JFrame {
         apenasNumero(evt);
     }//GEN-LAST:event_jTextCodigoKeyTyped
     //</editor-fold>
-    
+
     private void jDetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDetalhesActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
-        
+
         jTabbedPane1.setEnabledAt(0, true);
         jTabbedPane1.setEnabledAt(1, false);
-        
+
         String codig = jList.getSelectedValue();
-        
-       Imovel a = lista.consultar(pegaCodigo(codig));
-        Apartamento b = (Apartamento)a;
-       jNroQuartos.setText(String.valueOf(b.getNroQuartos()));
-        
+
+        Imovel a = lista.consultar(pegaCodigo(codig));
+        Apartamento b = (Apartamento) a;
+        jNroQuartos.setText(String.valueOf(b.getNroQuartos()));
+
     }//GEN-LAST:event_jDetalhesActionPerformed
-    
-    public int pegaCodigo(String codig){
-         int end = 0;
-         for (int i = 0; i < codig.length(); i++) {
-            if(codig.charAt(i) == '-'){
+
+    public int pegaCodigo(String codig) {
+        int end = 0;
+        for (int i = 0; i < codig.length(); i++) {
+            if (codig.charAt(i) == '-') {
                 end = i - 1;
                 break;
             }
-         }
-         codig = codig.substring(0, end);
-         return Integer.parseInt(codig);
+        }
+        codig = codig.substring(0, end);
+        return Integer.parseInt(codig);
     }
-    
+
     /**
      * @param args the command line arguments
      */
