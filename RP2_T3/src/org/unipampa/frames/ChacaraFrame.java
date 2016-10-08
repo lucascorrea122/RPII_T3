@@ -8,6 +8,7 @@ package org.unipampa.frames;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import org.unipampa.categorias.Chacara;
 import org.unipampa.categorias.Imovel;
 import org.unipampa.crud.ListaImoveisCrud;
@@ -17,10 +18,10 @@ import org.unipampa.crud.ListaImoveisCrud;
  * @author Esther Favero
  */
 public class ChacaraFrame extends javax.swing.JFrame {
-    
+
     private List<Imovel> listaChacara;
     private ListaImoveisCrud listaC = new ListaImoveisCrud();
-    private DefaultListModel modelList = new DefaultListModel();
+    
 
     /**
      * Creates new form ChacaraFrame
@@ -28,19 +29,12 @@ public class ChacaraFrame extends javax.swing.JFrame {
     public ChacaraFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        jIncluir.setEnabledAt(1, false);
+
+        jMenu.setEnabledAt(1, false);
+        Detalhes.setEnabled(false);
     }
-    
-     //<editor-fold defaultstate="collapsed" desc="Método Listar">
-    public void listar(){
-        modelList.clear();
-        for (Imovel chacara : listaChacara) {
-            modelList.addElement(chacara.toString());
-        }
-        jList.setModel(modelList);
-    }
-    //</editor-fold>
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,20 +45,18 @@ public class ChacaraFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jIncluir = new javax.swing.JTabbedPane();
+        jMenu = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextCodigo = new javax.swing.JTextField();
         Listar = new javax.swing.JButton();
         IncluirMenu = new javax.swing.JButton();
-        excluir = new javax.swing.JButton();
         Voltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
+        Detalhes = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel18 = new javax.swing.JLabel();
-        jcodigo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jlogradouro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -88,7 +80,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         janoConstrucao = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jdistanciaCidade = new javax.swing.JTextField();
-        Cancelar = new javax.swing.JButton();
+        jVoltar = new javax.swing.JButton();
         Salvar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,13 +105,6 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
-        excluir.setText("Excluir");
-        excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirActionPerformed(evt);
-            }
-        });
-
         Voltar.setText("Voltar");
         Voltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +112,19 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
+        jList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList);
+
+        Detalhes.setText("Detalhes");
+        Detalhes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DetalhesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -138,23 +135,23 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(IncluirMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(jLabel13))))
+                        .addComponent(IncluirMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Detalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                    .addComponent(jTextCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -167,86 +164,116 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Listar))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(IncluirMenu)
                         .addGap(18, 18, 18)
-                        .addComponent(excluir))
+                        .addComponent(Detalhes)
+                        .addGap(59, 59, 59)
+                        .addComponent(Voltar))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(Voltar)
-                .addGap(19, 19, 19))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        jIncluir.addTab("Menu", jPanel3);
-
-        jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel18.setText("Código:");
-
-        jcodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcodigoActionPerformed(evt);
-            }
-        });
+        jMenu.addTab("Menu", jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Logradouro:");
 
+        jlogradouro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Cidade:");
+
+        jcidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Bairro:");
 
-        jbairro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbairroActionPerformed(evt);
-            }
-        });
+        jbairro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel4.setText("Nº:");
 
+        jnumero.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jnumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jnumeroKeyTyped(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Área Total:");
+
+        jareaTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jareaTotal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jareaTotalKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel6.setText("Valor:");
 
+        jvalor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jvalor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jvalorKeyTyped(evt);
+            }
+        });
+
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Descrição:");
+
+        jdescricao.setDisabledTextColor(new java.awt.Color(0, 0, 0));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel8.setText("Área Construída:");
 
-        jareaConstruida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jareaConstruidaActionPerformed(evt);
+        jareaConstruida.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jareaConstruida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jareaConstruidaKeyTyped(evt);
             }
         });
 
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Nº de Quartos:");
 
-        jnroQuartos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jnroQuartosActionPerformed(evt);
+        jnroQuartos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jnroQuartos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jnroQuartosKeyTyped(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("Ano de Construção:");
 
+        janoConstrucao.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        janoConstrucao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                janoConstrucaoKeyTyped(evt);
+            }
+        });
+
         jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setText("Distância da Cidade:");
 
-        Cancelar.setText("Cancelar");
-        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+        jdistanciaCidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jdistanciaCidade.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jdistanciaCidadeKeyTyped(evt);
+            }
+        });
+
+        jVoltar.setText("Voltar");
+        jVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarActionPerformed(evt);
+                jVoltarActionPerformed(evt);
             }
         });
 
@@ -264,7 +291,6 @@ public class ChacaraFrame extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -279,64 +305,60 @@ public class ChacaraFrame extends javax.swing.JFrame {
                                 .addComponent(jvalor, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jdescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44))
+                        .addGap(62, 62, 62))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jlogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel4))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jlogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(52, 52, 52)
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jareaConstruida, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel10)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(janoConstrucao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(58, 58, 58)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel9)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jnroQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jdistanciaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jSeparator1)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jareaConstruida, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(janoConstrucao, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(58, 58, 58)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel9)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jnroQuartos, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jdistanciaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(Cancelar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jnumero, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(jVoltar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jcidade, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jcidade, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel3)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbairro)))
-                .addContainerGap())
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbairro)))
+                        .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jcidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -374,14 +396,14 @@ public class ChacaraFrame extends javax.swing.JFrame {
                     .addComponent(janoConstrucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(jdistanciaCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cancelar)
+                    .addComponent(jVoltar)
                     .addComponent(Salvar))
                 .addGap(29, 29, 29))
         );
 
-        jIncluir.addTab("Incluir", jPanel4);
+        jMenu.addTab("Incluir", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -389,101 +411,262 @@ public class ChacaraFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jIncluir))
+                .addComponent(jMenu)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jIncluir)
-                .addContainerGap())
+            .addComponent(jMenu)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcodigoActionPerformed
-
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
         // TODO add your handling code here:
-        listaChacara = listaC.getLista();
-        listar();
+        //listaChacara = listaC.getLista();
+        if (!(jTextCodigo.getText().trim().equals(""))) {
+            listar(Integer.parseInt(jTextCodigo.getText().trim()), true);
+        } else {
+            listar(0, false);
+        }
+
     }//GEN-LAST:event_ListarActionPerformed
 
     private void IncluirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirMenuActionPerformed
         // TODO add your handling code here:
-        jIncluir.setSelectedIndex(1);
-        
-        jIncluir.setEnabledAt(0, false);
-        jIncluir.setEnabledAt(1, true);
+        jMenu.setSelectedIndex(1);
+
+        jMenu.setEnabledAt(0, false);
+        jMenu.setEnabledAt(1, true);
     }//GEN-LAST:event_IncluirMenuActionPerformed
 
-    private void excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirActionPerformed
+    private void jVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVoltarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_excluirActionPerformed
-
-    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        // TODO add your handling code here:
-        jIncluir.setSelectedIndex(0);
+        jMenu.setSelectedIndex(0);
+        jMenu.setEnabledAt(0, true);
+        jMenu.setEnabledAt(1, false);
+        Salvar.setVisible(true);
+        Detalhes.setEnabled(false);
         
-        jIncluir.setEnabledAt(0, true);
-        jIncluir.setEnabledAt(1, false);
+        //<editor-fold defaultstate="collapsed" desc="Limpar os Campos">
+        jnroQuartos.setText("");
+        jvalor.setText("");
+        jareaTotal.setText("");
+        jareaConstruida.setText("");
+        jcidade.setText("");
+        jbairro.setText("");
+        jnumero.setText("");
+        jlogradouro.setText("");
+        jdescricao.setText("");
+        janoConstrucao.setText("");
+        jdistanciaCidade.setText("");
+        //</editor-fold>
         
-    }//GEN-LAST:event_CancelarActionPerformed
+        //<editor-fold defaultstate="collapsed" desc="Liberar o Campos">
+        jnroQuartos.setEnabled(true);
+        jvalor.setEnabled(true);
+        jareaTotal.setEnabled(true);
+        jareaConstruida.setEnabled(true);
+        jcidade.setEnabled(true);
+        jbairro.setEnabled(true);
+        jnumero.setEnabled(true);
+        jlogradouro.setEnabled(true);
+        jdescricao.setEnabled(true);
+        janoConstrucao.setEnabled(true);
+        jdistanciaCidade.setEnabled(true);
+        //</editor-fold>        
+    }//GEN-LAST:event_jVoltarActionPerformed
 
     private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
         // TODO add your handling code here:
-        int codigo, numero, nroQuartos, anoConstrucao;
+        int numero, nroQuartos, anoConstrucao;
         String cidade, logradouro, descricao, bairro;
         double areaTotal, valor, areaConstruida, distanciaCidade;
-        
-        codigo = Integer.parseInt(jcodigo.getText());
-        numero = Integer.parseInt(jnumero.getText());
-        nroQuartos = Integer.parseInt(jnroQuartos.getText());
-        anoConstrucao = Integer.parseInt(janoConstrucao.getText());
-        
-        logradouro = jlogradouro.getText();
-        bairro = jbairro.getText();
-        cidade = jcidade.getText();
-        descricao = jdescricao.getText();
-        
-        areaTotal = Double.parseDouble(jareaTotal.getText());
-        valor = Double.parseDouble(jvalor.getText());
-        areaConstruida = Double.parseDouble(jareaConstruida.getText());
-        distanciaCidade = Double.parseDouble(jdistanciaCidade.getText());
-        
-        Chacara chacara = new Chacara(logradouro, numero, bairro,
-            cidade, descricao, areaTotal, valor,
-            areaConstruida, nroQuartos, anoConstrucao, distanciaCidade);
-        
-        listaC.incluir(chacara);
-        
-        jIncluir.setSelectedIndex(0);
-    
-        jIncluir.setEnabledAt(0, true);
-        jIncluir.setEnabledAt(1, false);
-        
+
+        if (jnumero.getText().trim().equals("") || jnroQuartos.getText().trim().equals("") || janoConstrucao.getText().trim().equals("")
+                || jlogradouro.getText().trim().equals("") || jbairro.getText().trim().equals("") || jcidade.getText().trim().equals("")
+                || jdescricao.getText().trim().equals("") || jareaTotal.getText().trim().equals("") || jvalor.getText().trim().equals("")
+                || jvalor.getText().trim().equals("") || jareaConstruida.getText().trim().equals("") || jdistanciaCidade.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } else {
+            numero = Integer.parseInt(jnumero.getText());
+            nroQuartos = Integer.parseInt(jnroQuartos.getText());
+            anoConstrucao = Integer.parseInt(janoConstrucao.getText());
+            logradouro = jlogradouro.getText();
+            bairro = jbairro.getText();
+            cidade = jcidade.getText();
+            descricao = jdescricao.getText();
+            areaTotal = Double.parseDouble(jareaTotal.getText());
+            valor = Double.parseDouble(jvalor.getText());
+            areaConstruida = Double.parseDouble(jareaConstruida.getText());
+            distanciaCidade = Double.parseDouble(jdistanciaCidade.getText());
+
+            Chacara chacara = new Chacara(logradouro, numero, bairro,
+                    cidade, descricao, areaTotal, valor,
+                    areaConstruida, nroQuartos, anoConstrucao, distanciaCidade);
+
+            listaC.incluir(chacara);
+            jMenu.setSelectedIndex(0);
+            jMenu.setEnabledAt(0, true);
+            jMenu.setEnabledAt(1, false);
+            
+               //<editor-fold defaultstate="collapsed" desc="Limpar os Campos">
+        jnroQuartos.setText("");
+        jvalor.setText("");
+        jareaTotal.setText("");
+        jareaConstruida.setText("");
+        jcidade.setText("");
+        jbairro.setText("");
+        jnumero.setText("");
+        jlogradouro.setText("");
+        jdescricao.setText("");
+        janoConstrucao.setText("");
+        jdistanciaCidade.setText("");
+        //</editor-fold>
+        }
+
+
+
+
     }//GEN-LAST:event_SalvarActionPerformed
-
-    private void jbairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbairroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbairroActionPerformed
-
-    private void jareaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jareaConstruidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jareaConstruidaActionPerformed
-
-    private void jnroQuartosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnroQuartosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jnroQuartosActionPerformed
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
         // TODO add your handling code here:
         new Inicial().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_VoltarActionPerformed
+
+    private void jnumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnumeroKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jnumeroKeyTyped
+
+    private void jareaTotalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jareaTotalKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jareaTotalKeyTyped
+
+    private void jvalorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jvalorKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jvalorKeyTyped
+
+    private void jareaConstruidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jareaConstruidaKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jareaConstruidaKeyTyped
+
+    private void jnroQuartosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnroQuartosKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jnroQuartosKeyTyped
+
+    private void janoConstrucaoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_janoConstrucaoKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_janoConstrucaoKeyTyped
+
+    private void jdistanciaCidadeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jdistanciaCidadeKeyTyped
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }//GEN-LAST:event_jdistanciaCidadeKeyTyped
+
+    private void DetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetalhesActionPerformed
+        // TODO add your handling code here:
+        jMenu.setSelectedIndex(1);
+        Salvar.setVisible(false);
+        jMenu.setEnabledAt(0, true);
+        jMenu.setEnabledAt(1, false);
+
+        String codig = jList.getSelectedValue();
+
+        Imovel a = listaC.consultar(pegaCodigo(codig));
+
+        if (a != null) {
+
+            jMenu.setSelectedIndex(1);
+            jMenu.setEnabledAt(0, true);
+            jMenu.setEnabledAt(1, false);
+
+            Chacara b = (Chacara) a;
+
+            jnroQuartos.setText(String.valueOf(b.getNroQuartos()));
+            jvalor.setText(String.valueOf(b.getValor()));
+            jareaTotal.setText(String.valueOf(b.getAreaTotal()));
+            jareaConstruida.setText(String.valueOf(b.getAreaConstruida()));
+            jcidade.setText(String.valueOf(b.getCidade()));
+            jbairro.setText(String.valueOf(b.getBairro()));
+            jnumero.setText(String.valueOf(b.getNumero()));
+            jlogradouro.setText(String.valueOf(b.getLogradouro()));
+            jdescricao.setText(String.valueOf(b.getDescricao()));
+            janoConstrucao.setText(String.valueOf(b.getAnoConstrucao()));
+            jdistanciaCidade.setText(String.valueOf(b.getDistanciaCidade()));
+        }
+        //<editor-fold defaultstate="collapsed" desc="Bloquear Campos">
+        jnroQuartos.setEnabled(false);
+        jvalor.setEnabled(false);
+        jareaTotal.setEnabled(false);
+        jareaConstruida.setEnabled(false);
+        jcidade.setEnabled(false);
+        jbairro.setEnabled(false);
+        jnumero.setEnabled(false);
+        jlogradouro.setEnabled(false);
+        jdescricao.setEnabled(false);
+        janoConstrucao.setEnabled(false);
+        jdistanciaCidade.setEnabled(false);
+        //</editor-fold>
+        
+    }//GEN-LAST:event_DetalhesActionPerformed
+
+    private void jListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListValueChanged
+        // TODO add your handling code here:
+        Detalhes.setEnabled(true);
+        
+    }//GEN-LAST:event_jListValueChanged
+
+    private void apenasNumero(java.awt.event.KeyEvent evt) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
+
+        } else {
+            evt.consume();
+        }
+    }
+
+    public void listar(int cod, boolean isPesquisa) {
+        DefaultListModel modelList = new DefaultListModel();
+
+        if (isPesquisa){
+            Imovel chacara = listaC.consultar(cod);
+            if (chacara == null) {
+                JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
+            }
+            else{
+                modelList.addElement(chacara.toString());
+            } 
+        }else {
+                listaChacara = listaC.getLista();
+                for (Imovel c : listaChacara) {
+                    modelList.addElement(c.toString());
+                }
+            }
+            jList.setModel(modelList);
+        }
+        
+    
+
+    public int pegaCodigo(String codig) {
+        int end = 0;
+        for (int i = 0; i < codig.length(); i++) {
+            if (codig.charAt(i) == '-') {
+                end = i - 1;
+                break;
+            }
+        }
+        codig = codig.substring(0, end);
+        return Integer.parseInt(codig);
+    }
 
     /**
      * @param args the command line arguments
@@ -511,6 +694,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ChacaraFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -521,19 +705,16 @@ public class ChacaraFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Detalhes;
     private javax.swing.JButton IncluirMenu;
     private javax.swing.JButton Listar;
     private javax.swing.JButton Salvar;
     private javax.swing.JButton Voltar;
-    private javax.swing.JButton excluir;
-    private javax.swing.JTabbedPane jIncluir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -543,17 +724,18 @@ public class ChacaraFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList<String> jList;
+    private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextCodigo;
+    private javax.swing.JButton jVoltar;
     private javax.swing.JTextField janoConstrucao;
     private javax.swing.JTextField jareaConstruida;
     private javax.swing.JTextField jareaTotal;
     private javax.swing.JTextField jbairro;
     private javax.swing.JTextField jcidade;
-    private javax.swing.JTextField jcodigo;
     private javax.swing.JTextField jdescricao;
     private javax.swing.JTextField jdistanciaCidade;
     private javax.swing.JTextField jlogradouro;

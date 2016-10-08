@@ -87,7 +87,7 @@ public class Chacara extends Imovel{
     }
     
     public String toString(){
-    String dados = super.getCodig()+" - Apartamento";
+    String dados = super.getCodig()+" - Chácara";
         return dados;
     }
     
