@@ -22,6 +22,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
     private List<Imovel> listaChacara;
     private ListaImoveisCrud listaC = new ListaImoveisCrud();
     
+    private int aux;
+    
 
     /**
      * Creates new form ChacaraFrame
@@ -56,6 +58,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
         Detalhes = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
+        Excluir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jlogradouro = new javax.swing.JTextField();
@@ -82,6 +86,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jdistanciaCidade = new javax.swing.JTextField();
         jVoltar = new javax.swing.JButton();
         Salvar = new javax.swing.JButton();
+        jEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -126,6 +131,15 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+
+        Excluir.setText("Excluir");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -147,7 +161,11 @@ public class ChacaraFrame extends javax.swing.JFrame {
                         .addComponent(Detalhes, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Voltar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Excluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
@@ -172,10 +190,14 @@ public class ChacaraFrame extends javax.swing.JFrame {
                         .addComponent(IncluirMenu)
                         .addGap(18, 18, 18)
                         .addComponent(Detalhes)
-                        .addGap(59, 59, 59)
-                        .addComponent(Voltar))
+                        .addGap(18, 18, 18)
+                        .addComponent(Editar)
+                        .addGap(18, 18, 18)
+                        .addComponent(Excluir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(Voltar)
+                .addContainerGap())
         );
 
         jMenu.addTab("Menu", jPanel3);
@@ -189,6 +211,11 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jLabel2.setText("Cidade:");
 
         jcidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jcidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcidadeActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Bairro:");
@@ -284,6 +311,13 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
+        jEditar.setText("Editar");
+        jEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -343,6 +377,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jVoltar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -399,7 +435,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jVoltar)
-                    .addComponent(Salvar))
+                    .addComponent(Salvar)
+                    .addComponent(jEditar))
                 .addGap(29, 29, 29))
         );
 
@@ -581,7 +618,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
         String codig = jList.getSelectedValue();
 
-        Imovel a = listaC.consultar(pegaCodigo(codig));
+        Imovel a = listaC.consultar(pegarCodigo(codig));
 
         if (a != null) {
 
@@ -625,6 +662,65 @@ public class ChacaraFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jListValueChanged
 
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        String codigo = jList.getSelectedValue();
+        
+        Imovel c = listaC.consultar(pegarCodigo(codigo));
+        
+        if(c != null ){
+            jMenu.setSelectedIndex(1);
+            jMenu.setEnabledAt(0, true);
+            jMenu.setEnabledAt(1, false);
+            Salvar.setVisible(false);
+            jEditar.setVisible(true);
+        }
+        
+        Chacara d = (Chacara) c;
+        jcidade.setText(String.valueOf(d.getCidade()));
+        jlogradouro.setText(String.valueOf(d.getLogradouro()));
+        jbairro.setText(String.valueOf(d.getBairro()));
+        jnumero.setText(String.valueOf(d.getNumero()));
+        jareaTotal.setText(String.valueOf(d.getAreaTotal()));
+        jdescricao.setText(String.valueOf(d.getDescricao()));
+        jvalor.setText(String.valueOf(d.getValor()));
+        jareaConstruida.setText(String.valueOf(d.getAreaConstruida()));
+        jnroQuartos.setText(String.valueOf(d.getNroQuartos()));
+        jdistanciaCidade.setText(String.valueOf(d.getDistanciaCidade()));
+        janoConstrucao.setText(String.valueOf(d.getAnoConstrucao()));
+        
+        aux = d.getCodig();
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void jEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarActionPerformed
+        // TODO add your handling code here:
+        
+        if (jnumero.getText().trim().equals("") || jnroQuartos.getText().trim().equals("") || janoConstrucao.getText().trim().equals("")
+                || jlogradouro.getText().trim().equals("") || jbairro.getText().trim().equals("") || jcidade.getText().trim().equals("")
+                || jdescricao.getText().trim().equals("") || jareaTotal.getText().trim().equals("") || jvalor.getText().trim().equals("")
+                || jvalor.getText().trim().equals("") || jareaConstruida.getText().trim().equals("") || jdistanciaCidade.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        } 
+        else{
+            Chacara c = new Chacara(jlogradouro.getText(), Integer.parseInt(jnumero.getText()), jbairro.getText(),
+            jcidade.getText(), jdescricao.getText(), Integer.parseInt(jareaTotal.getText()), Integer.parseInt(jvalor.getText()),
+            Integer.parseInt(jareaConstruida.getText()), Integer.parseInt(jnroQuartos.getText()), Integer.parseInt(janoConstrucao.getText()), Integer.parseInt(jdistanciaCidade.getText())); 
+            
+            listaC.editar(aux, c);
+            jMenu.setSelectedIndex(0);
+            jMenu.setEnabledAt(1,false);
+            Detalhes.setEnabled(false);
+            Salvar.setVisible(true);
+            jEditar.setVisible(false);
+        }
+        
+        
+    }//GEN-LAST:event_jEditarActionPerformed
+
+    private void jcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcidadeActionPerformed
+
     private void apenasNumero(java.awt.event.KeyEvent evt) {
         char caracter = evt.getKeyChar();
         if (Character.isDigit(caracter)) {
@@ -656,7 +752,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         
     
 
-    public int pegaCodigo(String codig) {
+    public int pegarCodigo(String codig) {
         int end = 0;
         for (int i = 0; i < codig.length(); i++) {
             if (codig.charAt(i) == '-') {
@@ -667,6 +763,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
         codig = codig.substring(0, end);
         return Integer.parseInt(codig);
     }
+    
+    
 
     /**
      * @param args the command line arguments
@@ -706,10 +804,13 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Detalhes;
+    private javax.swing.JButton Editar;
+    private javax.swing.JButton Excluir;
     private javax.swing.JButton IncluirMenu;
     private javax.swing.JButton Listar;
     private javax.swing.JButton Salvar;
     private javax.swing.JButton Voltar;
+    private javax.swing.JButton jEditar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
