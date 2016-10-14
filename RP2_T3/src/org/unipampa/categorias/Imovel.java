@@ -41,6 +41,10 @@ public abstract class Imovel {
     public int getCodig() {
         return codig;
     }
+    
+    public void setCodig(int codig){
+        this.codig = codig;
+    }
 
     /**
      * @return the logradouro

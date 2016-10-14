@@ -39,6 +39,9 @@ public class ListaImoveisCrud implements ListaImoveis {
     public boolean editar(int codigo, Imovel im) {
         for (Imovel submissao1 : this.imoveis) {
             if (submissao1.getCodig() == codigo) {
+                im.setCodig(submissao1.getCodig());
+                int index = imoveis.indexOf(submissao1);
+                imoveis.set(index, im);
                 return true;
             }
         }

@@ -21,9 +21,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
     private List<Imovel> listaChacara;
     private ListaImoveisCrud listaC = new ListaImoveisCrud();
-    
+
     private int aux;
-    
 
     /**
      * Creates new form ChacaraFrame
@@ -34,9 +33,9 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
         jMenu.setEnabledAt(1, false);
         Detalhes.setEnabled(false);
+        Editar.setEnabled(false);
+        Excluir.setEnabled(false);
     }
-
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,9 +50,9 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextCodigo = new javax.swing.JTextField();
+        Codigo = new javax.swing.JTextField();
         Listar = new javax.swing.JButton();
-        IncluirMenu = new javax.swing.JButton();
+        Incluir = new javax.swing.JButton();
         Voltar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
@@ -85,7 +84,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jdistanciaCidade = new javax.swing.JTextField();
         jVoltar = new javax.swing.JButton();
-        Salvar = new javax.swing.JButton();
+        jSalvar = new javax.swing.JButton();
         jEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,10 +102,10 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
-        IncluirMenu.setText("Incluir");
-        IncluirMenu.addActionListener(new java.awt.event.ActionListener() {
+        Incluir.setText("Incluir");
+        Incluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IncluirMenuActionPerformed(evt);
+                IncluirActionPerformed(evt);
             }
         });
 
@@ -139,6 +138,11 @@ public class ChacaraFrame extends javax.swing.JFrame {
         });
 
         Excluir.setText("Excluir");
+        Excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -152,7 +156,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(IncluirMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(jLabel13))
@@ -169,7 +173,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
-                    .addComponent(jTextCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
+                    .addComponent(Codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
@@ -182,12 +186,12 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Listar))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(IncluirMenu)
+                        .addComponent(Incluir)
                         .addGap(18, 18, 18)
                         .addComponent(Detalhes)
                         .addGap(18, 18, 18)
@@ -211,11 +215,6 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jLabel2.setText("Cidade:");
 
         jcidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        jcidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcidadeActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Bairro:");
@@ -304,10 +303,10 @@ public class ChacaraFrame extends javax.swing.JFrame {
             }
         });
 
-        Salvar.setText("Salvar");
-        Salvar.addActionListener(new java.awt.event.ActionListener() {
+        jSalvar.setText("Salvar");
+        jSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalvarActionPerformed(evt);
+                jSalvarActionPerformed(evt);
             }
         });
 
@@ -379,7 +378,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -435,12 +434,12 @@ public class ChacaraFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jVoltar)
-                    .addComponent(Salvar)
+                    .addComponent(jSalvar)
                     .addComponent(jEditar))
                 .addGap(29, 29, 29))
         );
 
-        jMenu.addTab("Incluir", jPanel4);
+        jMenu.addTab("Dados", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -462,30 +461,33 @@ public class ChacaraFrame extends javax.swing.JFrame {
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
         // TODO add your handling code here:
         //listaChacara = listaC.getLista();
-        if (!(jTextCodigo.getText().trim().equals(""))) {
-            listar(Integer.parseInt(jTextCodigo.getText().trim()), true);
+        if (!(Codigo.getText().trim().equals(""))) {
+            listar(Integer.parseInt(Codigo.getText().trim()), true);
         } else {
             listar(0, false);
         }
 
     }//GEN-LAST:event_ListarActionPerformed
 
-    private void IncluirMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirMenuActionPerformed
+    private void IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirActionPerformed
         // TODO add your handling code here:
         jMenu.setSelectedIndex(1);
 
         jMenu.setEnabledAt(0, false);
         jMenu.setEnabledAt(1, true);
-    }//GEN-LAST:event_IncluirMenuActionPerformed
+        jEditar.setVisible(false);
+        
+
+    }//GEN-LAST:event_IncluirActionPerformed
 
     private void jVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jVoltarActionPerformed
         // TODO add your handling code here:
         jMenu.setSelectedIndex(0);
         jMenu.setEnabledAt(0, true);
         jMenu.setEnabledAt(1, false);
-        Salvar.setVisible(true);
+        jSalvar.setVisible(true);
         Detalhes.setEnabled(false);
-        
+
         //<editor-fold defaultstate="collapsed" desc="Limpar os Campos">
         jnroQuartos.setText("");
         jvalor.setText("");
@@ -499,7 +501,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         janoConstrucao.setText("");
         jdistanciaCidade.setText("");
         //</editor-fold>
-        
+
         //<editor-fold defaultstate="collapsed" desc="Liberar o Campos">
         jnroQuartos.setEnabled(true);
         jvalor.setEnabled(true);
@@ -515,7 +517,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         //</editor-fold>        
     }//GEN-LAST:event_jVoltarActionPerformed
 
-    private void SalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarActionPerformed
+    private void jSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSalvarActionPerformed
         // TODO add your handling code here:
         int numero, nroQuartos, anoConstrucao;
         String cidade, logradouro, descricao, bairro;
@@ -547,26 +549,25 @@ public class ChacaraFrame extends javax.swing.JFrame {
             jMenu.setSelectedIndex(0);
             jMenu.setEnabledAt(0, true);
             jMenu.setEnabledAt(1, false);
-            
-               //<editor-fold defaultstate="collapsed" desc="Limpar os Campos">
-        jnroQuartos.setText("");
-        jvalor.setText("");
-        jareaTotal.setText("");
-        jareaConstruida.setText("");
-        jcidade.setText("");
-        jbairro.setText("");
-        jnumero.setText("");
-        jlogradouro.setText("");
-        jdescricao.setText("");
-        janoConstrucao.setText("");
-        jdistanciaCidade.setText("");
-        //</editor-fold>
+            jSalvar.setVisible(true);
+
+            //<editor-fold defaultstate="collapsed" desc="Limpar os Campos">
+            jnroQuartos.setText("");
+            jvalor.setText("");
+            jareaTotal.setText("");
+            jareaConstruida.setText("");
+            jcidade.setText("");
+            jbairro.setText("");
+            jnumero.setText("");
+            jlogradouro.setText("");
+            jdescricao.setText("");
+            janoConstrucao.setText("");
+            jdistanciaCidade.setText("");
+            //</editor-fold>
         }
 
 
-
-
-    }//GEN-LAST:event_SalvarActionPerformed
+    }//GEN-LAST:event_jSalvarActionPerformed
 
     private void VoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VoltarActionPerformed
         // TODO add your handling code here:
@@ -612,9 +613,10 @@ public class ChacaraFrame extends javax.swing.JFrame {
     private void DetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetalhesActionPerformed
         // TODO add your handling code here:
         jMenu.setSelectedIndex(1);
-        Salvar.setVisible(false);
+        jSalvar.setVisible(false);
         jMenu.setEnabledAt(0, true);
         jMenu.setEnabledAt(1, false);
+        jEditar.setVisible(false);
 
         String codig = jList.getSelectedValue();
 
@@ -652,30 +654,35 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jdescricao.setEnabled(false);
         janoConstrucao.setEnabled(false);
         jdistanciaCidade.setEnabled(false);
+
         //</editor-fold>
-        
+
     }//GEN-LAST:event_DetalhesActionPerformed
 
     private void jListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListValueChanged
         // TODO add your handling code here:
         Detalhes.setEnabled(true);
-        
+        Editar.setEnabled(true);
+        Excluir.setEnabled(true);
+
     }//GEN-LAST:event_jListValueChanged
 
     private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
         // TODO add your handling code here:
         String codigo = jList.getSelectedValue();
-        
+
         Imovel c = listaC.consultar(pegarCodigo(codigo));
-        
-        if(c != null ){
+
+        if (c != null) {
             jMenu.setSelectedIndex(1);
             jMenu.setEnabledAt(0, true);
             jMenu.setEnabledAt(1, false);
-            Salvar.setVisible(false);
+            jSalvar.setVisible(false);
             jEditar.setVisible(true);
+            
+            
         }
-        
+
         Chacara d = (Chacara) c;
         jcidade.setText(String.valueOf(d.getCidade()));
         jlogradouro.setText(String.valueOf(d.getLogradouro()));
@@ -688,38 +695,49 @@ public class ChacaraFrame extends javax.swing.JFrame {
         jnroQuartos.setText(String.valueOf(d.getNroQuartos()));
         jdistanciaCidade.setText(String.valueOf(d.getDistanciaCidade()));
         janoConstrucao.setText(String.valueOf(d.getAnoConstrucao()));
-        
+
         aux = d.getCodig();
     }//GEN-LAST:event_EditarActionPerformed
 
     private void jEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarActionPerformed
         // TODO add your handling code here:
-        
+
         if (jnumero.getText().trim().equals("") || jnroQuartos.getText().trim().equals("") || janoConstrucao.getText().trim().equals("")
                 || jlogradouro.getText().trim().equals("") || jbairro.getText().trim().equals("") || jcidade.getText().trim().equals("")
                 || jdescricao.getText().trim().equals("") || jareaTotal.getText().trim().equals("") || jvalor.getText().trim().equals("")
                 || jvalor.getText().trim().equals("") || jareaConstruida.getText().trim().equals("") || jdistanciaCidade.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        } 
-        else{
+        } else {
             Chacara c = new Chacara(jlogradouro.getText(), Integer.parseInt(jnumero.getText()), jbairro.getText(),
-            jcidade.getText(), jdescricao.getText(), Integer.parseInt(jareaTotal.getText()), Integer.parseInt(jvalor.getText()),
-            Integer.parseInt(jareaConstruida.getText()), Integer.parseInt(jnroQuartos.getText()), Integer.parseInt(janoConstrucao.getText()), Integer.parseInt(jdistanciaCidade.getText())); 
-            
+                    jcidade.getText(), jdescricao.getText(), Double.parseDouble(jareaTotal.getText()), Double.parseDouble(jvalor.getText()),
+                    Double.parseDouble(jareaConstruida.getText()), Integer.parseInt(jnroQuartos.getText()), Integer.parseInt(janoConstrucao.getText()), Double.parseDouble(jdistanciaCidade.getText()));
+
             listaC.editar(aux, c);
             jMenu.setSelectedIndex(0);
-            jMenu.setEnabledAt(1,false);
+            jMenu.setEnabledAt(1, false);
             Detalhes.setEnabled(false);
-            Salvar.setVisible(true);
+            jSalvar.setVisible(true);
             jEditar.setVisible(false);
+
         }
-        
-        
+
+
     }//GEN-LAST:event_jEditarActionPerformed
 
-    private void jcidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcidadeActionPerformed
+    private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcidadeActionPerformed
+        String codigo = jList.getSelectedValue();
+
+        Imovel c = listaC.consultar(pegarCodigo(codigo));
+
+        if (c != null) {
+            listaC.excluir(pegarCodigo(codigo));
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso! ");
+
+        }
+
+
+    }//GEN-LAST:event_ExcluirActionPerformed
 
     private void apenasNumero(java.awt.event.KeyEvent evt) {
         char caracter = evt.getKeyChar();
@@ -733,24 +751,21 @@ public class ChacaraFrame extends javax.swing.JFrame {
     public void listar(int cod, boolean isPesquisa) {
         DefaultListModel modelList = new DefaultListModel();
 
-        if (isPesquisa){
+        if (isPesquisa) {
             Imovel chacara = listaC.consultar(cod);
             if (chacara == null) {
                 JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
-            }
-            else{
+            } else {
                 modelList.addElement(chacara.toString());
-            } 
-        }else {
-                listaChacara = listaC.getLista();
-                for (Imovel c : listaChacara) {
-                    modelList.addElement(c.toString());
-                }
             }
-            jList.setModel(modelList);
+        } else {
+            listaChacara = listaC.getLista();
+            for (Imovel c : listaChacara) {
+                modelList.addElement(c.toString());
+            }
         }
-        
-    
+        jList.setModel(modelList);
+    }
 
     public int pegarCodigo(String codig) {
         int end = 0;
@@ -763,8 +778,6 @@ public class ChacaraFrame extends javax.swing.JFrame {
         codig = codig.substring(0, end);
         return Integer.parseInt(codig);
     }
-    
-    
 
     /**
      * @param args the command line arguments
@@ -803,12 +816,12 @@ public class ChacaraFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Codigo;
     private javax.swing.JButton Detalhes;
     private javax.swing.JButton Editar;
     private javax.swing.JButton Excluir;
-    private javax.swing.JButton IncluirMenu;
+    private javax.swing.JButton Incluir;
     private javax.swing.JButton Listar;
-    private javax.swing.JButton Salvar;
     private javax.swing.JButton Voltar;
     private javax.swing.JButton jEditar;
     private javax.swing.JLabel jLabel1;
@@ -828,9 +841,9 @@ public class ChacaraFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jMenu;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JButton jSalvar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextCodigo;
     private javax.swing.JButton jVoltar;
     private javax.swing.JTextField janoConstrucao;
     private javax.swing.JTextField jareaConstruida;
