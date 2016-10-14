@@ -28,6 +28,16 @@ public class Chacara extends Imovel{
         this.anoConstrucao = anoConstrucao;
         this.distanciaCidade = distanciaCidade;
         
+        
+    }
+    
+    @Override
+    public String writeFile(){
+        String writeFile = super.getCodig()+";"+super.getLogradouro()+";"+super.getNumero()+";"+super.getBairro()+";"+
+                super.getCidade()+";"+super.getDescricao()+";"+super.getAreaTotal()+";"+super.getValor()+";"+
+                getAreaConstruida()+";"+getNroQuartos()+";"+getAnoConstrucao()+";"+getDistanciaCidade()+";";
+        
+        return writeFile;
     }
 
     /**

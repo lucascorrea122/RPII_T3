@@ -19,17 +19,19 @@ import org.unipampa.crud.ListaImoveisCrud;
  */
 public class ChacaraFrame extends javax.swing.JFrame {
 
-    private List<Imovel> listaChacara;
-    private ListaImoveisCrud listaC = new ListaImoveisCrud();
+    
+    private ListaImoveisCrud listaChacara;
 
     private int aux;
 
     /**
      * Creates new form ChacaraFrame
      */
-    public ChacaraFrame() {
+    public ChacaraFrame(ListaImoveisCrud listaChacara) {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        this.listaChacara = listaChacara;
 
         jMenu.setEnabledAt(1, false);
         Detalhes.setEnabled(false);
@@ -545,7 +547,8 @@ public class ChacaraFrame extends javax.swing.JFrame {
                     cidade, descricao, areaTotal, valor,
                     areaConstruida, nroQuartos, anoConstrucao, distanciaCidade);
 
-            listaC.incluir(chacara);
+            listaChacara.incluir(chacara);
+            listaChacara.escreverArquivo();
             jMenu.setSelectedIndex(0);
             jMenu.setEnabledAt(0, true);
             jMenu.setEnabledAt(1, false);
@@ -620,7 +623,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
 
         String codig = jList.getSelectedValue();
 
-        Imovel a = listaC.consultar(pegarCodigo(codig));
+        Imovel a = listaChacara.consultar(pegarCodigo(codig));
 
         if (a != null) {
 
@@ -671,7 +674,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String codigo = jList.getSelectedValue();
 
-        Imovel c = listaC.consultar(pegarCodigo(codigo));
+        Imovel c = listaChacara.consultar(pegarCodigo(codigo));
 
         if (c != null) {
             jMenu.setSelectedIndex(1);
@@ -712,7 +715,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
                     jcidade.getText(), jdescricao.getText(), Double.parseDouble(jareaTotal.getText()), Double.parseDouble(jvalor.getText()),
                     Double.parseDouble(jareaConstruida.getText()), Integer.parseInt(jnroQuartos.getText()), Integer.parseInt(janoConstrucao.getText()), Double.parseDouble(jdistanciaCidade.getText()));
 
-            listaC.editar(aux, c);
+            listaChacara.editar(aux, c);
             jMenu.setSelectedIndex(0);
             jMenu.setEnabledAt(1, false);
             Detalhes.setEnabled(false);
@@ -728,10 +731,10 @@ public class ChacaraFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String codigo = jList.getSelectedValue();
 
-        Imovel c = listaC.consultar(pegarCodigo(codigo));
+        Imovel c = listaChacara.consultar(pegarCodigo(codigo));
 
         if (c != null) {
-            listaC.excluir(pegarCodigo(codigo));
+            listaChacara.excluir(pegarCodigo(codigo));
             JOptionPane.showMessageDialog(null, "Excluído com sucesso! ");
 
         }
@@ -752,15 +755,15 @@ public class ChacaraFrame extends javax.swing.JFrame {
         DefaultListModel modelList = new DefaultListModel();
 
         if (isPesquisa) {
-            Imovel chacara = listaC.consultar(cod);
+            Imovel chacara = listaChacara.consultar(cod);
             if (chacara == null) {
                 JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
             } else {
                 modelList.addElement(chacara.toString());
             }
         } else {
-            listaChacara = listaC.getLista();
-            for (Imovel c : listaChacara) {
+            List<Imovel> chac = listaChacara.getLista();
+            for (Imovel c : chac) {
                 modelList.addElement(c.toString());
             }
         }
@@ -810,7 +813,7 @@ public class ChacaraFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChacaraFrame().setVisible(true);
+                new ChacaraFrame(null).setVisible(true);
             }
         });
     }
