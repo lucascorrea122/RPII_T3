@@ -34,6 +34,19 @@ public class Apartamento extends Imovel {
     
     }
 //</editor-fold>
+    /**
+     * 
+     * @return 
+     */
+    @Override
+    public String writeFile(){
+        String writeFile = super.getCodig()+";"+super.getLogradouro()+";"+super.getBairro()+";"+super.getCidade()+";"+
+                            super.getDescricao()+";"+super.getAreaTotal()+";"+super.getValor()+";"+getNroQuartos()+";"+
+                            getNroVagasGaragem()+";"+getAnoConstrucao()+";"+getNomeEdificio()+";"+getAndar()+";"+
+                            getNroApt()+";"+getValorCondominio()+";\n";
+        
+        return writeFile;
+    }
 
     //<editor-fold defaultstate="collapsed" desc="Gets/Sets/ToString">
     /**
