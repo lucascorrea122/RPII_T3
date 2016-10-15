@@ -9,6 +9,7 @@ package org.unipampa.frames;
  *
  * @author luh-l
  */
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -17,31 +18,49 @@ import org.unipampa.categorias.Terreno;
 import org.unipampa.crud.ListaImoveisCrud;
 
 public class TerrenoFrame extends javax.swing.JFrame {
-    private List<Imovel> listaTerreno;
-    private ListaImoveisCrud lista = new ListaImoveisCrud();
-    private DefaultListModel modelList = new DefaultListModel();
-   
+    
+    private ListaImoveisCrud listaTerreno;
 
+    
+    private DefaultListModel modelList = new DefaultListModel();
+    
+    private int aux;
+    /**
+     * Creates new form ChacaraFrame
+     */
+    public TerrenoFrame(ListaImoveisCrud listaTerreno) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        
+        this.listaTerreno = listaTerreno;
+
+        Menu.setEnabledAt(1, false);
+        Detalhes.setEnabled(false);
+        Editar.setEnabled(false);
+        Excluir.setEnabled(false);
+    }
  public void listar(int cod, boolean isPesquisa) {
         DefaultListModel modelList = new DefaultListModel();
         
         if(isPesquisa){
-            Imovel terreno = lista.consultar(cod);
+            Imovel terreno = listaTerreno.consultar(cod);
             if(terreno == null){
                 JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
             }else {
                 modelList.addElement(terreno.toString());
             }
         } else {
-            listaTerreno = lista.getLista();
-            for (Imovel terreno : listaTerreno) {
+           List<Imovel> terr = listaTerreno.getLista();
+            for (Imovel terreno : terr){
                 modelList.addElement(terreno.toString());
             }
         }
         
         jList1.setModel(modelList); 
     }    
-     
+     public void excluir(int cod){
+         listaTerreno.excluir(cod);
+     }
      
     /**
      * Creates new form TerrenoFrame
@@ -83,6 +102,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         Voltar = new javax.swing.JButton();
         Detalhes = new javax.swing.JButton();
+        Editar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -106,6 +126,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
         dimensaoLado = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         descricao = new javax.swing.JTextArea();
+        jEditar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,6 +180,14 @@ public class TerrenoFrame extends javax.swing.JFrame {
             }
         });
 
+        Editar.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Editar.setText("Editar");
+        Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,12 +204,18 @@ public class TerrenoFrame extends javax.swing.JFrame {
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Excluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Incluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Voltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Detalhes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(45, 45, 45)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Detalhes)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(Excluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                                        .addComponent(Incluir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Voltar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(45, 45, 45))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(Editar, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(Listar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +240,9 @@ public class TerrenoFrame extends javax.swing.JFrame {
                         .addComponent(Incluir)
                         .addGap(18, 18, 18)
                         .addComponent(Excluir)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
+                        .addComponent(Editar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Detalhes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Voltar)
@@ -301,6 +338,13 @@ public class TerrenoFrame extends javax.swing.JFrame {
         descricao.setRows(5);
         jScrollPane2.setViewportView(descricao);
 
+        jEditar.setText("Editar");
+        jEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -358,16 +402,18 @@ public class TerrenoFrame extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(218, 218, 218)))
-                        .addComponent(jLabel10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(dimensaoLado, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39))))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,11 +458,12 @@ public class TerrenoFrame extends javax.swing.JFrame {
                 .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(Salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44))
         );
 
-        Menu.addTab("Incluir", jPanel2);
+        Menu.addTab("Dados", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -444,7 +491,12 @@ public class TerrenoFrame extends javax.swing.JFrame {
         double dimensaoFrente;
         double dimensaoLado;
         
-        
+        if (this.logradouro.getText().trim().equals("")|| this.numero.getText().trim().equals("") || this.bairro.getText().trim().equals("") || 
+                this.cidade.getText().trim().equals("") || this.descricao.getText().trim().equals("")|| this.areaTotal.getText().trim().equals("") || 
+                 this.valor.getText().trim().equals("")
+                || this.dimensaoFrente.getText().trim().equals("") || this.dimensaoLado.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Deve preencher todos os campos");
+        } else {
         logradouro = this.logradouro.getText();
         numero = Integer.parseInt(this.numero.getText());
         bairro = this.bairro.getText();
@@ -458,10 +510,15 @@ public class TerrenoFrame extends javax.swing.JFrame {
         Imovel terreno = new Terreno(logradouro, numero, bairro, cidade, descricao, 
                 areaTotal, valor, dimensaoFrente, dimensaoLado);
         
-        lista.incluir(terreno);
+        listaTerreno.incluir(terreno);
+        listaTerreno.escreverArquivo();
         
-        
-        
+          JOptionPane.showMessageDialog(null, "Salvo Com Sucesso!");
+            
+           Menu.setSelectedIndex(0);
+
+           Menu.setEnabledAt(0, true);
+           Menu.setEnabledAt(1, false);
             
             this.logradouro.setText("");
             this.numero.setText("");
@@ -471,30 +528,56 @@ public class TerrenoFrame extends javax.swing.JFrame {
             this.areaTotal.setText("");
             this.valor.setText("");
             this.dimensaoFrente.setText("");
-            this.dimensaoLado.setText("");
-      
-            JOptionPane.showMessageDialog(null, "Salvo Com Sucesso!");
-            
-           Menu.setSelectedIndex(0);
-
-           Menu.setEnabledAt(0, true);
-           Menu.setEnabledAt(1, false);
+            this.dimensaoLado.setText("");      
     }//GEN-LAST:event_SalvarActionPerformed
-
+    }
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         Menu.setSelectedIndex(0);
         Menu.setEnabledAt(0, true);
-        Menu.setEnabledAt(1, true);
+        Menu.setEnabledAt(1, false);
+        Salvar.setVisible(true);
+        
+        
+         this.logradouro.setText("");
+         this.numero.setText("");
+         this.bairro.setText("");
+         this.cidade.setText("");
+         this.descricao.setText("");
+         this.areaTotal.setText("");
+         this.valor.setText("");
+         this.dimensaoFrente.setText("");
+         this.dimensaoLado.setText("");
+         
+         this.logradouro.setEnabled(true);
+         this.numero.setEnabled(true);
+         this.bairro.setEnabled(true);
+         this.cidade.setEnabled(true);
+         this.descricao.setEnabled(true);
+         this.areaTotal.setEnabled(true);
+         this.valor.setEnabled(true);
+         this.dimensaoFrente.setEnabled(true);
+         this.dimensaoLado.setEnabled(true);
+         
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void IncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirActionPerformed
         Menu.setSelectedIndex(1);
         Menu.setEnabledAt(1, true);
         Menu.setEnabledAt(0, false);
+        jEditar.setVisible(false);
     }//GEN-LAST:event_IncluirActionPerformed
 
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-       
+        String codigo = jList1.getSelectedValue();
+
+        Imovel ii = listaTerreno.consultar(pegaCodigo(codigo));
+
+        if (ii != null) {
+            listaTerreno.excluir(pegaCodigo(codigo));
+            JOptionPane.showMessageDialog(null, "Excluído com sucesso! ");
+
+        }
+     
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void ListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarActionPerformed
@@ -539,13 +622,20 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private void DetalhesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DetalhesActionPerformed
         // TODO add your handling code here:
         Menu.setSelectedIndex(1);
-        
+        Salvar.setVisible(false);
         Menu.setEnabledAt(0, true);
         Menu.setEnabledAt(1, false);
+        jEditar.setVisible(false);
+        
         
         String codig = jList1.getSelectedValue();
         
-       Imovel i = lista.consultar(pegaCodigo(codig));
+       Imovel i = listaTerreno.consultar(pegaCodigo(codig));
+       if (i != null) {
+
+            Menu.setSelectedIndex(1);
+            Menu.setEnabledAt(0, true);
+            Menu.setEnabledAt(1, false);
         Terreno t = (Terreno)i;
         
        logradouro.setText(String.valueOf(t.getLogradouro()));
@@ -557,9 +647,74 @@ public class TerrenoFrame extends javax.swing.JFrame {
        valor.setText(String.valueOf(t.getValor()));
        dimensaoFrente.setText(String.valueOf(t.getDimensaoFrente()));
        dimensaoLado.setText(String.valueOf(t.getDimensaoLado()));
-      
+       
+       }
+       
+       logradouro.setEnabled(false);
+       numero.setEnabled(false);
+       bairro.setEnabled(false);
+       cidade.setEnabled(false);
+       descricao.setEnabled(false);
+       areaTotal.setEnabled(false);
+       valor.setEnabled(false);
+       dimensaoFrente.setEnabled(false);
+       dimensaoLado.setEnabled(false);
        
     }//GEN-LAST:event_DetalhesActionPerformed
+
+    private void EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarActionPerformed
+        // TODO add your handling code here:
+        String codigo = jList1.getSelectedValue();
+        
+           Imovel ii = listaTerreno.consultar(pegaCodigo(codigo));
+
+        if (ii != null) {
+            Menu.setSelectedIndex(1);
+            Menu.setEnabledAt(0, true);
+            Menu.setEnabledAt(1, false);
+            Salvar.setVisible(false);
+            jEditar.setVisible(true);
+            
+            
+        }
+
+        Terreno tt = (Terreno) ii;
+
+       logradouro.setText(String.valueOf(tt.getLogradouro()));
+       numero.setText(String.valueOf(tt.getNumero()));
+       bairro.setText(String.valueOf(tt.getBairro()));
+       cidade.setText(String.valueOf(tt.getCidade())); 
+       descricao.setText(String.valueOf(tt.getDescricao())); 
+       areaTotal.setText(String.valueOf(tt.getAreaTotal()));
+       valor.setText(String.valueOf(tt.getValor()));
+       dimensaoFrente.setText(String.valueOf(tt.getDimensaoFrente()));
+       dimensaoLado.setText(String.valueOf(tt.getDimensaoLado()));
+       
+       
+        aux = tt.getCodig();
+    }//GEN-LAST:event_EditarActionPerformed
+
+    private void jEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEditarActionPerformed
+        // TODO add your handling code here:
+        if (logradouro.getText().trim().equals("")|| numero.getText().trim().equals("") || bairro.getText().trim().equals("") || cidade.getText().trim().equals("") || descricao.getText().trim().equals("")|| areaTotal.getText().trim().equals("") || 
+                 valor.getText().trim().equals("")
+                || dimensaoFrente.getText().trim().equals("") || dimensaoLado.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Deve preencher todos os campos");
+        } else {
+         Terreno t = new Terreno (logradouro.getText(), Integer.parseInt(numero.getText()), bairro.getText(), 
+                 cidade.getText(), descricao.getText(), Integer.parseInt(areaTotal.getText()),Integer.parseInt(valor.getText()) ,
+                 Double.parseDouble(dimensaoFrente.getText()), Double.parseDouble(dimensaoLado.getText()));
+         
+         listaTerreno.editar(aux, t);
+         Menu.setSelectedIndex(0);
+         Menu.setEnabledAt(1, false);
+         Detalhes.setEnabled(false);
+         Salvar.setVisible(true);
+         jEditar.setVisible(false);
+         
+        }
+        
+    }//GEN-LAST:event_jEditarActionPerformed
 
      public int pegaCodigo(String codig){
          int end = 0;
@@ -610,6 +765,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Detalhes;
+    private javax.swing.JButton Editar;
     private javax.swing.JButton Excluir;
     private javax.swing.JButton Incluir;
     private javax.swing.JButton Listar;
@@ -623,6 +779,7 @@ public class TerrenoFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea descricao;
     private javax.swing.JTextField dimensaoFrente;
     private javax.swing.JTextField dimensaoLado;
+    private javax.swing.JButton jEditar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
