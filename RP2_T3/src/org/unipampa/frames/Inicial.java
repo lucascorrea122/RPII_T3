@@ -120,7 +120,7 @@ public class Inicial extends javax.swing.JFrame {
 
     private void jButtonChacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChacaraActionPerformed
         // TODO add your handling code here:
-        //new ChacaraFrame().setVisible(true);
+        new ChacaraFrame(this.listaChacara).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonChacaraActionPerformed
 
