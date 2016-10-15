@@ -144,6 +144,7 @@ public class ListaImoveisCrud implements ListaImoveis {
             Logger.getLogger(ListaImoveisCrud.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }}
+    
 
     @Override
     public boolean lerArquivo() {

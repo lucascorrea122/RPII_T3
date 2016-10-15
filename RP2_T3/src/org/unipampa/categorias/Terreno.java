@@ -24,6 +24,13 @@ public class Terreno extends Imovel{
     /**
      * @return the dimensaoFrente
      */
+    
+    public String writeFile(){
+        String writeFile = super.getCodig()+";";
+        return writeFile;
+    
+    }
+    
     public double getDimensaoFrente() {
         return dimensaoFrente;
     }

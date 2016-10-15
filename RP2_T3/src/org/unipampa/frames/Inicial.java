@@ -19,6 +19,7 @@ public class Inicial extends javax.swing.JFrame {
     private ListaImoveisCrud listacasas = new ListaImoveisCrud("Casas");
     private ListaImoveisCrud listaTerrenos = new ListaImoveisCrud("Terrenos");
 
+    
     /**
      * Creates new form Inicial
      */
