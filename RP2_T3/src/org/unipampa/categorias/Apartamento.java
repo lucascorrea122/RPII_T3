@@ -38,6 +38,7 @@ public class Apartamento extends Imovel {
      * 
      * @return 
      */
+    
     @Override
     public String writeFile(){
         String writeFile = super.getCodig()+";"+super.getLogradouro()+";"+super.getBairro()+";"+super.getCidade()+";"+
