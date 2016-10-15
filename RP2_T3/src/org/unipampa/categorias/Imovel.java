@@ -41,10 +41,6 @@ public abstract class Imovel {
     public int getCodig() {
         return codig;
     }
-    
-    public void setCodig(int codig){
-        this.codig = codig;
-    }
 
     /**
      * @return the logradouro
@@ -137,11 +133,17 @@ public abstract class Imovel {
         return valor;
     }
     
+    public void setCodig(int codig){
+        this.codig = codig;
+    }
+    
   @Override
     public String toString(){
         return "Código"+codigo+"\nLogradouro:"+logradouro;
     
         
     }
+    
+    public abstract String writeFile();
     
 }

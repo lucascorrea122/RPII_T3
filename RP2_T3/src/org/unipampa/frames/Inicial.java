@@ -5,11 +5,19 @@
  */
 package org.unipampa.frames;
 
+import org.unipampa.crud.ListaImoveisCrud;
+
 /**
  *
  * @author Lucascorrea
  */
 public class Inicial extends javax.swing.JFrame {
+    
+    private ListaImoveisCrud listaApartamento = new ListaImoveisCrud("Apartamentos");
+    private ListaImoveisCrud listaChacara = new ListaImoveisCrud("Chacaras");
+    private ListaImoveisCrud listaSalaComercial = new ListaImoveisCrud("SalasComerciais");
+    private ListaImoveisCrud listacasas = new ListaImoveisCrud("Casas");
+    private ListaImoveisCrud listaTerrenos = new ListaImoveisCrud("Terrenos");
 
     /**
      * Creates new form Inicial
@@ -99,19 +107,19 @@ public class Inicial extends javax.swing.JFrame {
 
     private void jButtonApartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonApartamentosActionPerformed
         // TODO add your handling code here:
-        new ApartamentoFrame().setVisible(true);
+        new ApartamentoFrame(this.listaApartamento).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonApartamentosActionPerformed
 
     private void jButtonTerrenoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTerrenoActionPerformed
         // TODO add your handling code here:
-        new TerrenoFrame().setVisible(true);
+        //new TerrenoFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonTerrenoActionPerformed
 
     private void jButtonChacaraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChacaraActionPerformed
         // TODO add your handling code here:
-        new ChacaraFrame().setVisible(true);
+        //new ChacaraFrame().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButtonChacaraActionPerformed
 

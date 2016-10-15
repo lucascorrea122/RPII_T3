@@ -5,11 +5,16 @@
  */
 package org.unipampa.crud;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import org.unipampa.categorias.Imovel;
 import java.util.List;
 import org.unipampa.categorias.Apartamento;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,10 +23,18 @@ import java.util.List;
 public class ListaImoveisCrud implements ListaImoveis {
 
     private ArrayList<Imovel> imoveis = new ArrayList();
+    private String tipo;
+    
+    public ListaImoveisCrud(String tipo){
+        this.tipo = tipo;
+    }
+    
+
+  
 
     @Override
     public boolean incluir(Imovel im) {
-        this.imoveis.add(im);
+        imoveis.add(im);
         return true;
     }
 
@@ -117,8 +130,20 @@ public class ListaImoveisCrud implements ListaImoveis {
 
     @Override
     public boolean escreverArquivo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(System.getProperty("user.dir")+System.getProperty("file.separator")+this.tipo+".csv"));
+        
+            for (Imovel imovel : imoveis) {
+                bw.write(imovel.writeFile());
+            }
+            
+            bw.close();
+            
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ListaImoveisCrud.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }}
 
     @Override
     public boolean lerArquivo() {
