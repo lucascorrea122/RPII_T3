@@ -6,16 +6,32 @@
 package org.unipampa.frames;
 
 /**
- *
+ *opa
  * @author junin
  */
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import org.unipampa.categorias.Imovel;
+import org.unipampa.categorias.SalaComercial;
+import org.unipampa.crud.ListaImoveisCrud;
+
 public class SalaComercialFrame extends javax.swing.JFrame {
+
+    //static List<Imovel> listaSalaComercial;
+    static int aux;
+    private ListaImoveisCrud ListaSalaComercial;
 
     /**
      * Creates new form SalaComercialFrame
      */
-    public SalaComercialFrame() {
+    public SalaComercialFrame(ListaImoveisCrud lista) {
+        this.ListaSalaComercial = lista;
         initComponents();
+        this.setLocationRelativeTo(null);
+
+        jTabbedPane1.setEnabledAt(1, false);
+
     }
 
     /**
@@ -27,21 +43,810 @@ public class SalaComercialFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel27 = new javax.swing.JLabel();
+        codigo = new javax.swing.JTextField();
+        listar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Jlista = new javax.swing.JList<String>();
+        IncluirFrame = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        escrever = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
+        jLabel52 = new javax.swing.JLabel();
+        jScrollPane28 = new javax.swing.JScrollPane();
+        lagradouro = new javax.swing.JTextPane();
+        jScrollPane30 = new javax.swing.JScrollPane();
+        bairro = new javax.swing.JTextPane();
+        jScrollPane31 = new javax.swing.JScrollPane();
+        cidade = new javax.swing.JTextPane();
+        jScrollPane32 = new javax.swing.JScrollPane();
+        descricao = new javax.swing.JTextPane();
+        jScrollPane36 = new javax.swing.JScrollPane();
+        nome = new javax.swing.JTextPane();
+        jButton3 = new javax.swing.JButton();
+        numero = new javax.swing.JTextField();
+        areaTotal = new javax.swing.JTextField();
+        valor = new javax.swing.JTextField();
+        Nbanheiros = new javax.swing.JTextField();
+        andar = new javax.swing.JTextField();
+        Nsala = new javax.swing.JTextField();
+        valorCondominio = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        incluir = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel27.setText("CÓDIGO: ");
+
+        listar.setText("LISTAR");
+        listar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listarActionPerformed(evt);
+            }
+        });
+
+        Jlista.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Jlista.setLayoutOrientation(javax.swing.JList.HORIZONTAL_WRAP);
+        jScrollPane2.setViewportView(Jlista);
+
+        IncluirFrame.setText("INCLUIR");
+        IncluirFrame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IncluirFrameActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("EXCLUIR");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("VOLTAR");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Aperte Listar com o campo vazio para ver o codigo das salas Comerciais cadastradas");
+
+        jButton5.setText("EDITAR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("DETALHES");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        escrever.setText("ESCREVER");
+        escrever.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                escreverActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(IncluirFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(listar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                    .addComponent(escrever, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(142, 142, 142))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(IncluirFrame)
+                        .addComponent(listar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6)
+                    .addComponent(escrever))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Menu", jPanel1);
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel41.setText("Logradouro: ");
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel42.setText("Numero: ");
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel43.setText("Bairro: ");
+
+        jLabel44.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel44.setText("Cidade: ");
+
+        jLabel45.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel45.setText("Descrição: ");
+
+        jLabel46.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel46.setText("Area Total: ");
+
+        jLabel47.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel47.setText("Valor: ");
+
+        jLabel48.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel48.setText("Numero de Banheiros: ");
+
+        jLabel49.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel49.setText("Nome: ");
+
+        jLabel50.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel50.setText("Andar: ");
+
+        jLabel51.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel51.setText("Valor do Condominio: ");
+
+        jLabel52.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel52.setText("Numero de Salas: ");
+
+        lagradouro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane28.setViewportView(lagradouro);
+
+        bairro.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane30.setViewportView(bairro);
+
+        cidade.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane31.setViewportView(cidade);
+
+        descricao.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane32.setViewportView(descricao);
+
+        nome.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jScrollPane36.setViewportView(nome);
+
+        jButton3.setText("VOLTAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        numero.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroActionPerformed(evt);
+            }
+        });
+
+        areaTotal.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        valor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        Nbanheiros.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        andar.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        Nsala.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+
+        valorCondominio.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        valorCondominio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorCondominioActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("                         SALA COMERCIAL");
+
+        incluir.setText("INCLUIR");
+        incluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incluirActionPerformed(evt);
+            }
+        });
+
+        editar.setText("EDITAR");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane30))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane31, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel45)
+                                                .addComponent(jLabel46))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jScrollPane32)
+                                                .addComponent(areaTotal)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel47)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(valor))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jScrollPane28)))
+                                    .addGap(14, 14, 14)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel48)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Nbanheiros, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(incluir, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel49)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane36))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(valorCondominio, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel52)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Nsala))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel50)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(andar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel41)
+                                            .addComponent(jScrollPane28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel42)
+                                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(incluir, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel43))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(editar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel44)
+                                    .addComponent(jScrollPane31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel45)
+                                    .addComponent(jScrollPane32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel46)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(areaTotal)
+                                        .addGap(3, 3, 3)))))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel47))
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel48)
+                            .addComponent(Nbanheiros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel49))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(andar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel50))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel52)
+                            .addComponent(Nsala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel51)
+                            .addComponent(valorCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(138, 138, 138))
+        );
+
+        jTabbedPane1.addTab("Incluir", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 511, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 473, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void listar(int cod, boolean isPesquisa) {
+
+        DefaultListModel modelList = new DefaultListModel();
+
+        if (isPesquisa) {
+            Imovel salaComercial = ListaSalaComercial.consultar(cod);
+            if (salaComercial == null) {
+                JOptionPane.showMessageDialog(null, "Imóvel não encontrado");
+            } else {
+                modelList.addElement(salaComercial.toString());
+            }
+        } else {
+            List<Imovel> sala = ListaSalaComercial.getLista();
+            for (Imovel salaComercial : sala) {
+                modelList.addElement(salaComercial.getCodig() + 1 + ".Sala Comercial");
+            }
+        }
+        Jlista.setModel(modelList);
+    }
+
+    private void apenasNumero(java.awt.event.KeyEvent evt) {
+        char caracter = evt.getKeyChar();
+        if (Character.isDigit(caracter)) {
+
+        } else {
+            evt.consume();
+        }
+    }
+
+    private void jTextCodigoKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+
+    private void jValorKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+
+    private void jAreaTotalKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+
+    //<editor-fold defaultstate="collapsed" desc="Eventos - Campos Aceitando Apenas Números">
+    private void jNroKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+
+    private void jValorCondominioKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+
+    private void jAndarKeyTyped(java.awt.event.KeyEvent evt) {
+        // TODO add your handling code here:
+        apenasNumero(evt);
+    }
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        jTabbedPane1.setSelectedIndex(0);
+
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, false);
+        editar.setVisible(true);
+        codigo.setText("");
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void IncluirFrameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncluirFrameActionPerformed
+
+        this.lagradouro.setText("");
+        this.Nbanheiros.setText("");
+        this.Nsala.setText("");
+        this.andar.setText("");
+        this.areaTotal.setText("");
+        this.bairro.setText("");
+        this.cidade.setText("");
+        this.descricao.setText("");
+        this.numero.setText("");
+        this.valor.setText("");
+        this.valorCondominio.setText("");
+        this.nome.setText("");
+        codigo.setText("");
+
+        incluir.setVisible(true);
+        editar.setVisible(false);
+
+        this.andar.setEnabled(true);
+        this.lagradouro.setEnabled(true);
+        this.numero.setEnabled(true);
+        this.descricao.setEnabled(true);
+        this.areaTotal.setEnabled(true);
+        this.valor.setEnabled(true);
+        this.valorCondominio.setEnabled(true);
+        this.Nbanheiros.setEnabled(true);
+        this.Nsala.setEnabled(true);
+        this.bairro.setEnabled(true);
+        this.nome.setEnabled(true);
+        this.cidade.setEnabled(true);
+
+        IncluirFrame.setVisible(true);
+        jTabbedPane1.setSelectedIndex(1);
+
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, true);        // TODO add your handling code here:
+    }//GEN-LAST:event_IncluirFrameActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+
+        ListaSalaComercial.excluir(Integer.parseInt(codigo.getText().trim()) - 1);
+        codigo.setText("");
+
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        new Inicial().setVisible(true);
+        this.dispose();
+        new Inicial().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void listarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarActionPerformed
+
+        if (!(codigo.getText().trim().equals(""))) {
+            listar(Integer.parseInt(codigo.getText().trim()), true);
+        } else {
+            listar(0, false);
+        }
+        codigo.setText("");
+    }//GEN-LAST:event_listarActionPerformed
+
+    private void valorCondominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorCondominioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorCondominioActionPerformed
+
+    private void incluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incluirActionPerformed
+        String lagradouro;
+        int numero;
+        String bairro;
+        String cidade;
+        String descricao;
+        double areaTotal;
+        double valor;
+        int Nbanheiros;
+        String nome;
+        int andar;
+        int Nsala;
+        double valorCondominio;
+
+        //<editor-fold defaultstate="collapsed" desc="Campos Setados">
+        //codigo = Integer.parseInt(jCodigo.getText());
+        numero = Integer.parseInt(this.numero.getText());
+        areaTotal = Double.parseDouble(this.areaTotal.getText());
+        Nbanheiros = Integer.parseInt(this.Nbanheiros.getText());
+        andar = Integer.parseInt(this.andar.getText());
+        Nsala = Integer.parseInt(this.Nsala.getText());
+        lagradouro = this.lagradouro.getText();
+        bairro = this.bairro.getText();
+        cidade = this.cidade.getText();
+        descricao = this.descricao.getText();
+        valor = Double.parseDouble(this.valor.getText());
+        valorCondominio = Double.parseDouble(this.valorCondominio.getText());
+        nome = this.nome.getText();
+
+        //</editor-fold>
+        SalaComercial salaComercial = new SalaComercial(lagradouro, numero, bairro, cidade,
+                descricao, areaTotal, valor, Nbanheiros, nome, andar, Nsala,
+                valorCondominio);
+
+        ListaSalaComercial.incluir(salaComercial);
+
+        this.lagradouro.setText("");
+        this.Nbanheiros.setText("");
+        this.Nsala.setText("");
+        this.andar.setText("");
+        this.areaTotal.setText("");
+        this.bairro.setText("");
+        this.cidade.setText("");
+        this.descricao.setText("");
+        this.numero.setText("");
+        this.valor.setText("");
+        this.valorCondominio.setText("");
+        this.nome.setText("");
+        codigo.setText("");
+        jTabbedPane1.setSelectedIndex(0);
+
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, false);
+    }//GEN-LAST:event_incluirActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        incluir.setVisible(false);
+        editar.setVisible(true);
+//iiojer
+        this.andar.setEnabled(true);
+        this.lagradouro.setEnabled(true);
+        this.numero.setEnabled(true);
+        this.descricao.setEnabled(true);
+        this.areaTotal.setEnabled(true);
+        this.valor.setEnabled(true);
+        this.valorCondominio.setEnabled(true);
+        this.Nbanheiros.setEnabled(true);
+        this.Nsala.setEnabled(true);
+        this.bairro.setEnabled(true);
+        this.nome.setEnabled(true);
+        this.cidade.setEnabled(true);
+
+        SalaComercial a = (SalaComercial) ListaSalaComercial.consultar(Integer.parseInt(codigo.getText().trim()) - 1);
+
+        jTabbedPane1.setSelectedIndex(1);
+
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, true);
+
+        this.andar.setText(String.valueOf(a.getAndar()));
+        this.lagradouro.setText(String.valueOf(a.getLogradouro()));
+        this.numero.setText(String.valueOf(a.getNumero()));
+        this.descricao.setText(String.valueOf(a.getDescricao()));
+        this.areaTotal.setText(String.valueOf(a.getAreaTotal()));
+        this.valor.setText(String.valueOf(a.getValor()));
+        this.valorCondominio.setText(String.valueOf(a.getValorCondominio()));
+        this.Nbanheiros.setText(String.valueOf(a.getNbanheiros()));
+        this.Nsala.setText(String.valueOf(a.getNsala()));
+        this.bairro.setText(String.valueOf(a.getBairro()));
+        this.nome.setText(String.valueOf(a.getNome()));
+        this.cidade.setText(String.valueOf(a.getCidade()));
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+
+        SalaComercial a = (SalaComercial) ListaSalaComercial.consultar(Integer.parseInt(codigo.getText().trim()) - 1);
+
+        a.setAndar(Integer.parseInt(this.andar.getText()));
+        a.setAreaTotal(Double.parseDouble(this.areaTotal.getText()));
+        a.setBairro(this.bairro.getText());
+        a.setCidade(this.cidade.getText());
+        a.setDescricao(this.descricao.getText());
+        a.setLogradouro(this.lagradouro.getText());
+        a.setNbanheiros(Integer.parseInt(this.Nbanheiros.getText()));
+        a.setNome(this.nome.getText());
+        a.setNsala(Integer.parseInt(this.Nsala.getText()));
+        a.setNumero(Integer.parseInt(this.numero.getText()));
+        a.setValorCondominio(Double.parseDouble(this.valorCondominio.getText()));
+        a.setValor(Double.parseDouble(this.valor.getText()));
+
+        String lagradouro;
+        int numero;
+        String bairro;
+        String cidade;
+        String descricao;
+        double areaTotal;
+        double valor;
+        int Nbanheiros;
+        String nome;
+        int andar;
+        int Nsala;
+        double valorCondominio;
+
+        //<editor-fold defaultstate="collapsed" desc="Campos Setados">
+        //codigo = Integer.parseInt(jCodigo.getText());
+        numero = Integer.parseInt(this.numero.getText());
+        areaTotal = Double.parseDouble(this.areaTotal.getText());
+        Nbanheiros = Integer.parseInt(this.Nbanheiros.getText());
+        andar = Integer.parseInt(this.andar.getText());
+        Nsala = Integer.parseInt(this.Nsala.getText());
+        lagradouro = this.lagradouro.getText();
+        bairro = this.bairro.getText();
+        cidade = this.cidade.getText();
+        descricao = this.descricao.getText();
+        valor = Double.parseDouble(this.valor.getText());
+        valorCondominio = Double.parseDouble(this.valorCondominio.getText());
+        nome = this.nome.getText();
+
+        //</editor-fold>
+        SalaComercial salaComercial = new SalaComercial(lagradouro, numero, bairro, cidade,
+                descricao, areaTotal, valor, Nbanheiros, nome, andar, Nsala,
+                valorCondominio);
+        ListaSalaComercial.editar(aux, salaComercial);
+
+        codigo.setText("");
+        jTabbedPane1.setSelectedIndex(0);
+
+        jTabbedPane1.setEnabledAt(0, true);
+        jTabbedPane1.setEnabledAt(1, false);
+
+
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        incluir.setVisible(false);
+        editar.setVisible(false);
+
+        SalaComercial a = (SalaComercial) ListaSalaComercial.consultar(Integer.parseInt(codigo.getText().trim()) - 1);
+
+        jTabbedPane1.setSelectedIndex(1);
+
+        jTabbedPane1.setEnabledAt(0, false);
+        jTabbedPane1.setEnabledAt(1, true);
+
+        this.andar.setText(String.valueOf(a.getAndar()));
+        this.lagradouro.setText(String.valueOf(a.getLogradouro()));
+        this.numero.setText(String.valueOf(a.getNumero()));
+        this.descricao.setText(String.valueOf(a.getDescricao()));
+        this.areaTotal.setText(String.valueOf(a.getAreaTotal()));
+        this.valor.setText(String.valueOf(a.getValor()));
+        this.valorCondominio.setText(String.valueOf(a.getValorCondominio()));
+        this.Nbanheiros.setText(String.valueOf(a.getNbanheiros()));
+        this.Nsala.setText(String.valueOf(a.getNsala()));
+        this.bairro.setText(String.valueOf(a.getBairro()));
+        this.nome.setText(String.valueOf(a.getNome()));
+        this.cidade.setText(String.valueOf(a.getCidade()));
+
+        this.andar.setEnabled(false);
+        this.lagradouro.setEnabled(false);
+        this.numero.setEnabled(false);
+        this.descricao.setEnabled(false);
+        this.areaTotal.setEnabled(false);
+        this.valor.setEnabled(false);
+        this.valorCondominio.setEnabled(false);
+        this.Nbanheiros.setEnabled(false);
+        this.Nsala.setEnabled(false);
+        this.bairro.setEnabled(false);
+        this.nome.setEnabled(false);
+        this.cidade.setEnabled(false);
+        codigo.setText("");
+
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void escreverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_escreverActionPerformed
+        ListaSalaComercial.escreverArquivo();
+        JOptionPane.showMessageDialog(null, "Arquivo criado");
+//DFMIONGOOERNIIOGTROJHTROJTRYJO
+    }//GEN-LAST:event_escreverActionPerformed
+
+    public boolean verificaMaiorZero(String z) {
+        if (Integer.parseInt(z) == 0) {
+            return true;
+        } else if (Integer.parseInt(z) > 0) {
+            return true;
+        } else {
+        }
+        return false;
+
+    }
+
+    public int pegaCodigo(String codig) {
+        int end = 0;
+        for (int i = 0; i < codig.length(); i++) {
+            if (codig.charAt(i) == '-') {
+                end = i - 1;
+                break;
+            }
+        }
+        codig = codig.substring(0, end);
+        return Integer.parseInt(codig);
+    }
 
     /**
      * @param args the command line arguments
@@ -72,12 +877,63 @@ public class SalaComercialFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new SalaComercialFrame().setVisible(true);
+                new SalaComercialFrame(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton IncluirFrame;
+    private javax.swing.JList Jlista;
+    private javax.swing.JTextField Nbanheiros;
+    private javax.swing.JTextField Nsala;
+    private javax.swing.JTextField andar;
+    private javax.swing.JTextField areaTotal;
+    private javax.swing.JTextPane bairro;
+    private javax.swing.JTextPane cidade;
+    private javax.swing.JTextField codigo;
+    private javax.swing.JTextPane descricao;
+    private javax.swing.JButton editar;
+    private javax.swing.JButton escrever;
+    private javax.swing.JButton incluir;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane28;
+    private javax.swing.JScrollPane jScrollPane30;
+    private javax.swing.JScrollPane jScrollPane31;
+    private javax.swing.JScrollPane jScrollPane32;
+    private javax.swing.JScrollPane jScrollPane36;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextPane lagradouro;
+    private javax.swing.JButton listar;
+    private javax.swing.JTextPane nome;
+    private javax.swing.JTextField numero;
+    private javax.swing.JTextField valor;
+    private javax.swing.JTextField valorCondominio;
     // End of variables declaration//GEN-END:variables
 }
